@@ -1,0 +1,34 @@
+ .font-style{
+    font-weight: 600;
+    font-family: monospace;
+    font-size: 16px;
+}
+.header-wrapper{
+    .logo{
+        display: inline-flex;
+        width: 200px;
+        height: 100px;
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .user-authenticate{
+        display: inline-flex;
+        float: right;
+        margin: 37px 20px 37px 0;
+        span{
+            border: 1px solid black;
+            padding: 5px 10px;
+            border-radius: 8px;
+            margin-right: 10px;
+            cursor: pointer;
+            @extend .font-style;
+            &:hover{
+                background-color: #64c4ed;
+                color: #01024e;
+                border: 1px solid #4f81c7;
+            }
+        }
+    }
+}

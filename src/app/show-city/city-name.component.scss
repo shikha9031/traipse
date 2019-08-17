@@ -1,0 +1,11 @@
+.city-name-collection-wrapper{
+    background-color: #64c4ed;
+    padding: 10px;
+    .city-name{
+        display: inline-block;
+        padding-right: 10px;
+        &:last-of-type{
+            padding-right: 0px;
+        }
+    }
+}
