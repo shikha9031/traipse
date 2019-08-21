@@ -1,8 +1,5 @@
- .font-style{
-    font-weight: 600;
-    font-family: monospace;
-    font-size: 16px;
-}
+@import "~src/assets/stylesheet/fontStyle.scss";
+
 .header-wrapper{
     .logo{
         display: inline-flex;
@@ -18,15 +15,16 @@
         float: right;
         margin: 37px 20px 37px 0;
         span{
-            border: 1px solid black;
+            border: 1px solid #383838;
             padding: 5px 10px;
             border-radius: 8px;
             margin-right: 10px;
+            color: #383838;
             cursor: pointer;
             @extend .font-style;
             &:hover{
                 background-color: #64c4ed;
-                color: #01024e;
+                color: white;
                 border: 1px solid #4f81c7;
             }
         }

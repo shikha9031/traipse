@@ -1,8 +1,0 @@
-<div class="city-name-collection-wrapper">
-  <div *ngFor="let list of cityDataArr; let i = index" class="city-name">
-     {{list.name}}
-     <ng-container *ngIf="list.show">
-     <div  *ngFor="let value of list.locality; let j = index">{{value}}</div>
-     </ng-container>
-  </div>  
-</div>

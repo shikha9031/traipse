@@ -1,0 +1,29 @@
+<div class="wrapper">
+    <div class="header">
+        <span>Filter </span>
+        <div class="action-buttons">
+            <button>Apply</button>
+            <button>Clear All</button>
+        </div>
+    </div>
+    <div class="filter">
+        <div class="type" *ngFor=" let list of filterArr.result; let i = index">{{list.label}}
+            <span class="down-arrow">
+            <img src="./assets/images/iconfinder.svg" width="20px" *ngIf="!list.show" (click)="list.show = !list.show">
+            <img src="./assets/images/iconfinder_arrow_up.svg" width="20px" *ngIf="list.show" (click)="list.show = !list.show">
+        </span>
+            <div class="filter-list-dropdown-radiobuttons wrapper"*ngIf="list.chooseOption == 'radio' && list.show">
+                <div *ngFor="let obj of list.options" class="options">
+                        <input type="radio" class="styled-radio"  [name] = "'radioButton'+i">
+                        <label>{{obj}}</label>
+                </div>
+            </div>
+            <div class="filter-list-dropdown-checkbox wrapper" *ngIf="list.chooseOption == 'multi' && list.show">
+                    <div *ngFor="let obj of list.options" class="options">
+                            <input type="checkbox"  class="styled-checkbox">
+                            <label>{{obj}}</label>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

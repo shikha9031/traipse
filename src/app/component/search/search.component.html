@@ -1,0 +1,26 @@
+<div class="search-container">
+  <div class="title">Find Hostel !! We provide best options</div>
+  <div class="search-box">
+    <div class="search-input-box"><input type="text" placeholder="search by locality name"></div>
+    <div class="choose-person-container" (clickOutside)="onClickedOutsidePerson($event)">
+      <div class="total-person" (click) = "personFlag = !personFlag">1 Person</div>
+      <div class="person-count" *ngIf="personFlag">
+          <div class="wrapper">
+            <button>-</button>
+            <span>1 Person </span>
+            <button>+</button>
+          </div>
+      </div>
+    </div>
+    <div class="gender-wrapper" (clickOutside)="onClickedOutsideGender($event)">
+      <div class="gender" (click) = "genderFlag = !genderFlag">Gender</div>
+      <div class="choose-gender" *ngIf="genderFlag">
+          <div class="category">Male</div>
+          <div class="category">Female</div>
+          <div class="category">Others</div>
+      </div>
+    </div>
+    <button class="search-btn">Search</button>
+  </div>
+
+</div>  

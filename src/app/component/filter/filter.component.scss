@@ -1,0 +1,149 @@
+@import "~src/assets/stylesheet/fontStyle.scss";
+
+.wrapper{
+    background-color: #64c4ed;
+    color: white;
+    @extend .font-style; 
+    .header{
+        padding: 10px;
+        font-weight: 600;
+        .action-buttons{
+            padding-top: 10px;
+            button{
+                padding: 7px 10px;
+                background: #ff502f;
+                color: white;
+                font-weight: 600;
+                font-size: 16px;
+                cursor: pointer;
+                border: 1px solid #49beb7;
+            }
+        }   
+    }   
+.filter{
+    .type{
+        padding: 10px;
+        border-bottom: 1px solid #ececec;
+        font-weight: 600;
+        &:last-of-type{
+            border-bottom: 0;
+        }
+        .down-arrow{
+            float: right;
+            cursor: pointer;
+        }
+        .wrapper{
+            background-color: #ececec;
+            color: #383838;
+            margin-top: 10px;
+            .options{
+                padding: 10px;
+                position: relative;
+                .styled-checkbox {
+                   // position: absolute; // take it out of document flow
+                    opacity: 0; // hide it
+                    position: absolute;
+                    & + label {
+                      cursor: pointer;
+                      padding: 0;
+                      @media(max-width:425px){
+                        font-size: 12px;
+                      }
+                    }                        
+                    // Box.
+                    & + label:before {
+                      content: '';
+                      display: inline-block;
+                      vertical-align: text-top;
+                      width: 20px;
+                      height: 20px;
+                      background: #cecece;
+                      margin-right: 10px;
+                    }
+                  
+                    // Box hover
+                    &:hover + label:before {
+                      background: #ff502f;
+                    }
+                    
+                    // Box focus
+                    &:focus + label:before {
+                      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+                    }
+                  
+                    // Box checked
+                    &:checked + label:before {
+                      background: #ff502f;
+                    }
+                     // Checkmark. Could be replaced with an image
+                    &:checked + label:after {
+                        content: '';
+                        position: absolute;
+                        left: 14px;
+                        top: 20px;
+                        background: white;
+                        width: 2px;
+                        height: 2px;
+                        box-shadow: 
+                        2px 0 0 white,
+                        4px 0 0 white,
+                        4px -2px 0 white,
+                        4px -4px 0 white,
+                        4px -6px 0 white,
+                        4px -8px 0 white;
+                        transform: rotate(45deg);
+                    }
+                }
+                .styled-radio{
+                         opacity: 0; // hide it
+                         position: absolute;
+                         & + label {
+                           cursor: pointer;
+                           padding: 0;
+                           @media(max-width:425px){
+                            font-size: 12px;
+                          }
+                         }                        
+                         // Box.
+                         & + label:before {
+                           content: '';
+                           display: inline-block;
+                           vertical-align: text-top;
+                           width: 20px;
+                           height: 20px;
+                           border-radius: 50%;
+                           background: #cecece;
+                           margin-right: 10px;
+                         }
+                       
+                         // Box hover
+                         &:hover + label:before {
+                           background: #ff502f;
+                         }
+                         
+                         // Box focus
+                         &:focus + label:before {
+                           box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+                         }
+                       
+                         // Box checked
+                         &:checked + label:before {
+                           background: #ff502f;
+                         }
+                          // Checkmark. Could be replaced with an image
+                         &:checked + label:after {
+                             content: '';
+                             position: absolute;
+                             left: 14px;
+                             top: 14px;
+                             background: white;
+                             width: 10px;
+                             height: 10px;
+                             border-radius: 50%;
+                         }                          
+                }
+            }
+        }
+    }
+}
+}
