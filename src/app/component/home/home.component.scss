@@ -1,11 +1,12 @@
 .home-wrapper{
     width: 100%;
     .filter-container{
-        display:inline-block;
         width: 25%;
+        display: inline-block;
+        vertical-align: top;
     }
     .hostel-list-container{
         display: inline-block;
-        width: 75%;
+        width: 74.5%;
     }
 }

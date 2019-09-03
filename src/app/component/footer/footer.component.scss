@@ -1,0 +1,77 @@
+@import "~src/assets/stylesheet/fontStyle";
+
+.footer-container{
+    background-color: #ececec;
+    padding: 20px;
+    margin-top: 20px;
+    .form-wrapper{
+        display: inline-block;
+        width: 50%;
+        border-right: 1px solid;
+        .contact-us-form{
+            float: right;
+            margin-right: 30px;
+            text-align: center;
+            input, textarea{
+                padding: 5px;
+                margin-bottom: 10px;
+                width: 300px;
+                height: 30px;
+                border: 4px solid #64c4ed;
+            }
+            textarea{
+                height: 80px;
+            }
+            .submit-button{
+                button{
+                    padding: 10px 20px;
+                    background-color: #64c4ed;
+                    border: none;
+                    color: white;
+                    font-size: 16px;
+                    font-weight: 600;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    .contact-us{
+        display: inline-block;
+        vertical-align: top;
+        width: 49%;
+        .contact-wrapper{
+            margin-left: 30px;
+            .bottom-space{
+                margin-bottom: 10px;
+                .icon{
+                    display: inline-block;
+                    img{
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
+                .value{
+                    display: inline-block;
+                    vertical-align: top;
+                    margin-left: 10px;
+                    font-family: $fontFamily;
+                    color: #3c4951;
+                    font-size: 16px;
+                    a{
+                        text-decoration: none;
+                        color: #3c4951;                        
+                    }
+                }
+            }
+            
+        }
+    }
+}
+.copyright{
+    background-color: #64c4ed;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    padding: 10px;
+    font-family: $fontFamily;
+}

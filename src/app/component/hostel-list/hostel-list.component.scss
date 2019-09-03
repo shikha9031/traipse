@@ -1,0 +1,116 @@
+@import "~src/assets/stylesheet/fontStyle";
+@import "~src/assets/stylesheet/color";
+
+.hostel-list-container{
+    .img-container{
+        display: inline-block;
+        width: 34%;
+        .img-size{
+            width: 380px;
+            height: 300px;
+        }
+    }
+   
+    .item{
+        border-top: 3px solid #64c4ed;
+        box-shadow: 3px 2px 2px #64c4ed;
+        margin-bottom: 10px;
+        width: 100%;
+        height: 300px;
+        .desc{
+            display: inline-block;
+            vertical-align: top;
+            padding: 16px 20px 10px 20px;
+            width: 62%;
+            .header
+            {
+                display: inline-block;
+                .label{
+                    font-size: 30px;
+                    font-weight: 600;
+                    color: $Limed_Spruce;
+                    font-family: $fontFamily;
+                }
+                .review{
+                    color: $Limed_Spruce;
+                    font-family: $fontFamily;
+                    a{
+                        text-decoration: none;                    
+                    }
+                }
+            }
+            .booking{
+                float: right;
+                button{
+                    color: white;
+                    padding: 15px;
+                    background-color: #64c4ed;
+                    border: none;
+                    font-weight: 600;
+                    font-size: 15px;
+                }
+            }
+
+            .sharing{
+                font-family: $fontFamily;
+                margin-bottom: 10px;
+                .label{
+                    font-size: 20px;
+                    text-align: center;
+                    margin-bottom: 10px;
+                }
+                .sharing-data-table{
+                    width: 100%;
+                    .table-header{
+                        background-color: #1c2a48;
+                        color: white;
+                        border: 1px solid #1c2a48;
+                    }
+                    tr{
+                        text-align: center;
+                        th{
+                            padding: 5px;
+                        }
+                        .even{
+                            background-color: #ececec;
+                            border: 1px solid #ececec;
+                        }
+                        .odd{
+                            background-color: white;
+                            border: 1px solid white;
+                        }
+                    }
+                }
+            }
+            .location{
+                font-family: $fontFamily;
+                color: $Limed_Spruce;  
+                .location_label{
+                    font-weight: 600;                     
+                }             
+            }
+            .favourite{
+                float: right;
+                .fav-icon{
+                    display: inline-block;
+                    position: relative;
+                    .no-color-icon-size{
+                        width: 20px;
+                        height: 20px;
+                        position: absolute;
+                        right: 10px;
+                    }
+                    .color-icon-size{
+                        width: 35px;
+                        height: 35px;
+                        position: absolute;
+                        right: 2px;
+                        top: -7px;
+                    }
+                }
+            }
+        }
+      
+    }
+  
+}

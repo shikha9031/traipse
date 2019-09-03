@@ -25,7 +25,9 @@
     "ng-click-outside": "^5.0.0",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
-    "zone.js": "~0.8.26"
+    "zone.js": "~0.8.26",
+    "@angular/cdk": "^6.4.5",
+    "@angular/material": "^6.4.5"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.11.0",

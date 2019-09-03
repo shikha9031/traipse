@@ -8,20 +8,12 @@ export const initialState: City = {
 }
 
 
-export function cityReducer(state: City = initialState, action: cityRef.actions): City {
+export function cityReducer( initialState, action: cityRef.actions): City[] {
 
   switch (action.type) {
     case cityRef.City_Data:
-      let return_val = initialSetParams(action.payload);
-      return return_val;
+      return [...action.payload];
   }
   return initialState;
 
-}
-
-function initialSetParams(payload: City): City {
-  for (let i in payload) {
-    payload[i].show = false;
-  }
-  return payload;
 }
