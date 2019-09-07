@@ -1,7 +1,8 @@
 @import "~src/assets/stylesheet/fontStyle.scss";
+@import "~src/assets/stylesheet/color";
 
 .wrapper{
-    background-color: #64c4ed;
+    background-color: $sky_Blue;
     color: white;
     @extend .font-style; 
     .header{
@@ -11,7 +12,7 @@
             padding-top: 10px;
             button{
                 padding: 7px 10px;
-                background: #ff502f;
+                background: $Red_orange;
                 color: white;
                 font-weight: 600;
                 font-size: 16px;
@@ -63,7 +64,7 @@
                   
                     // Box hover
                     &:hover + label:before {
-                      background: #ff502f;
+                      background: $Red_orange;
                     }
                     
                     // Box focus
@@ -73,7 +74,7 @@
                   
                     // Box checked
                     &:checked + label:before {
-                      background: #ff502f;
+                      background: $Red_orange;
                     }
                      // Checkmark. Could be replaced with an image
                     &:checked + label:after {
@@ -118,7 +119,7 @@
                        
                          // Box hover
                          &:hover + label:before {
-                           background: #ff502f;
+                           background: $Red_orange;
                          }
                          
                          // Box focus
@@ -128,7 +129,7 @@
                        
                          // Box checked
                          &:checked + label:before {
-                           background: #ff502f;
+                           background: $Red_orange;
                          }
                           // Checkmark. Could be replaced with an image
                          &:checked + label:after {

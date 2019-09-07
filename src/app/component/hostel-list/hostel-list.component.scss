@@ -12,8 +12,8 @@
     }
    
     .item{
-        border-top: 3px solid #64c4ed;
-        box-shadow: 3px 2px 2px #64c4ed;
+        border-top: 3px solid $sky_Blue;
+        box-shadow: 3px 2px 2px $sky_Blue;
         margin-bottom: 10px;
         width: 100%;
         height: 300px;
@@ -44,7 +44,7 @@
                 button{
                     color: white;
                     padding: 15px;
-                    background-color: #64c4ed;
+                    background-color: $sky_Blue;
                     border: none;
                     font-weight: 600;
                     font-size: 15px;

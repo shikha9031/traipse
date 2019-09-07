@@ -1,4 +1,5 @@
 @import "~src/assets/stylesheet/fontStyle.scss";
+@import "~src/assets/stylesheet/color";
 
 .header-wrapper{
     .logo{
@@ -23,7 +24,7 @@
             cursor: pointer;
             @extend .font-style;
             &:hover{
-                background-color: #64c4ed;
+                background-color: $sky_Blue;
                 color: white;
                 border: 1px solid #4f81c7;
             }

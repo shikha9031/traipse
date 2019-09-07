@@ -1,3 +1,22 @@
-<p>
-  modal works!
-</p>
+<div class="form-wrapper">
+  <div class="form">
+    <div class="label">Login</div>
+    <div class="login">
+      <div class="username">
+        <input type="email" autocomplete="off" name="username" id="username" placeholder="User Name" />
+      </div>
+      <div class="password">
+        <input type="password" name="password" autocomplete="off" id="password" placeholder="Password" />
+      </div>
+      <div class="google-login">
+        <img src="./assets/images/google.png" class="google-img">
+        <button class="google-sign-in" (click)="socialSignIn('google')">Sign in with Google</button>
+      </div>
+      <div class="submit">
+        <button (click)="submitDetails()">Submit</button>
+      </div>
+    </div>
+    <div class="register">
+    </div>
+  </div>
+</div>

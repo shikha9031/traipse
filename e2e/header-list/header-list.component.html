@@ -1,0 +1,16 @@
+<div class="city-name-collection-wrapper">
+  <div *ngFor="let list of cityArr; let i = index" class="city-name list" (clickOutside)="onClickedOutside($event,list)">
+     <span (click)="list.show = !list.show" >{{list.name}}</span>
+     <div *ngIf="list.show" class="locality">
+       <div *ngFor="let value of list.locality; let j = index" class="locality-name">{{value}}</div>
+    </div>
+  </div>
+  <div class="header-list">
+    <div class="list" (click)="onHomeClick()" >Home</div><!--[routerLink]="['/home']"-->
+    <div class="list">Register Your Hostel</div>
+    <div class="list" (click)="onContactUsClick()">Contact us</div>
+    <div class="list" [routerLink]="['/favourite']">Favourites</div>    
+  </div>
+</div>
+
+

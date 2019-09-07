@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
+import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider, LinkedinLoginProvider } from "angular-6-social-login";
 
 /** custom modules import */
 
@@ -37,6 +38,27 @@ let reducer = {
   hostelReducer: hostelReducer
 }
 
+// Configs 
+export function getAuthServiceConfigs() {
+  let config = new AuthServiceConfig(
+      [
+        // {
+        //   id: FacebookLoginProvider.PROVIDER_ID,
+        //   provider: new FacebookLoginProvider("Your-Facebook-app-id")
+        // },
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider("628351886543-ngn7qi1u4u5c8prvco9pusqovkmintlb.apps.googleusercontent.com")
+        },
+          // {
+          //   id: LinkedinLoginProvider.PROVIDER_ID,
+          //   provider: new LinkedinLoginProvider("1098828800522-m2ig6bieilc3tpqvmlcpdvrpvn86q4ks.apps.googleusercontent.com")
+          // }
+      ]
+  )
+  return config;
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,9 +80,13 @@ let reducer = {
     CommonModule,
     StoreModule.forRoot(reducer),
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    SocialLoginModule
   ],
-  providers: [CommonLogicService],
+  providers: [CommonLogicService, {
+    provide: AuthServiceConfig,
+    useFactory: getAuthServiceConfigs
+  }],
   bootstrap: [AppComponent],
   entryComponents: [ ModalComponent ]
 })

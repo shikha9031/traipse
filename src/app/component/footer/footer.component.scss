@@ -1,4 +1,5 @@
 @import "~src/assets/stylesheet/fontStyle";
+@import "~src/assets/stylesheet/color";
 
 .footer-container{
     background-color: #ececec;
@@ -17,7 +18,7 @@
                 margin-bottom: 10px;
                 width: 300px;
                 height: 30px;
-                border: 4px solid #64c4ed;
+                border: 4px solid $sky_Blue;
             }
             textarea{
                 height: 80px;
@@ -25,7 +26,7 @@
             .submit-button{
                 button{
                     padding: 10px 20px;
-                    background-color: #64c4ed;
+                    background-color: $sky_Blue;
                     border: none;
                     color: white;
                     font-size: 16px;
@@ -68,7 +69,7 @@
     }
 }
 .copyright{
-    background-color: #64c4ed;
+    background-color: $sky_Blue;
     color: white;
     text-align: center;
     font-size: 16px;
