@@ -1,47 +1,36 @@
 <div class="hostel-list-container">
   <ng-container *ngIf="hostel_arr">
-    <div *ngFor="let list of hostel_arr" class="item">
-      <div class="img-container"><img src={{list.img}} class="img-size"></div>
+    <div *ngFor="let list of hostel_arr.hostelArr" class="item">
+      <div class="img-container"><img src={{list.img[0]}} class="img-size"></div>
       <div class="desc">
         <div class="header">
           <div class="label">{{list.label}}</div>
-          <div>
+          <div class="pg-for item-container">
+            <span class="item-label">PG For :&nbsp; </span>
+            <span>{{list.pg_for}}</span>
+          </div>
+          <div class="item-container">
+            <span class="item-label">Rating :&nbsp; </span>
             <span *ngFor="let val of counter(list.rating)">
-          <img src="assets/images/iconfinder_star.svg">
+              <img src="assets/images/iconfinder_star.svg">
           </span>
           </div>
-          <div class="review"><a href="#">Review</a></div>
         </div>
-        <div class="booking">
-          <button>Book Now</button>
-        </div>
-        <div class="sharing">
-          <div class="label">Sharing</div>
-          <div>
-            <table class="sharing-data-table">
-              <tr class="table-header">
-                <th>Sharing</th>
-                <th>Price</th>
-                <th>Available</th>
-                <th>Amenities</th>
-              </tr>
-              <tr *ngFor="let val of list.price; let odd = odd ; let even = even">
-                <td [ngClass]="{odd:odd, even:even}">{{val.sharing}}</td>
-                <td [ngClass]="{odd:odd, even:even}">{{val.price}}</td>
-                <td [ngClass]="{odd:odd, even:even}">{{val.available}}</td>
-                <td [ngClass]="{odd:odd, even:even}">{{val.amenities}}</td>
-              </tr>
-            </table>
-          </div>
-        </div>
-        <div class="location">
-          <span class="location_label"> Location :&nbsp; </span>
+        <div class="location item-container">
+          <span class="location_label item-label"> Location :&nbsp; </span>
           <span> {{list.location}}</span>
         </div>
-        <div class="favourite">
-          <div class="fav-icon" (click)="makeFav(list)"><img src="assets/images/iconfinder_love_no_color.svg" class="no-color-icon-size" *ngIf="!list.favFlag"></div>
-          <div class="fav-icon" (click)="makeFav(list)"><img src="assets/images/iconfinder_love_red.svg" class="color-icon-size" *ngIf="list.favFlag"></div>
+        <div class="owner-contact-number item-container">
+          <span class="item-label"> Contact Number :&nbsp; </span>
+          <span> {{list.owner_contact_num}}</span>
         </div>
+      </div>
+      <div class="booking">
+        <button (click)="redirectToBookPage(list)">Get More Details</button>
+      </div>
+      <div class="favourite">
+        <div class="fav-icon" (click)="makeFav(list)"><img src="assets/images/iconfinder_love_no_color.svg" class="no-color-icon-size" *ngIf="!list.favFlag"></div>
+        <div class="fav-icon" (click)="makeFav(list)"><img src="assets/images/iconfinder_love_red.svg" class="color-icon-size" *ngIf="list.favFlag"></div>
       </div>
     </div>
   </ng-container>

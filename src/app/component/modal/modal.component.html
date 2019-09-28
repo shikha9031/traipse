@@ -1,12 +1,20 @@
 <div class="form-wrapper">
   <div class="form">
-    <div class="label">Login</div>
-    <div class="login">
+    <div class="label">{{data.param.toUpperCase()}}</div>
+    <div *ngIf="data.param === 'Schedule Visit'" class="user-info">
+      We will use your data for sending the notification to Owner
+    </div>
+    <!-- login form starts-->
+
+    <div class="login" *ngIf="data.param === 'login'">
       <div class="username">
         <input type="email" autocomplete="off" name="username" id="username" placeholder="User Name" />
       </div>
       <div class="password">
         <input type="password" name="password" autocomplete="off" id="password" placeholder="Password" />
+      </div>
+      <div class="already-sign-in">
+        If Already Signup. Then Login With Google.
       </div>
       <div class="google-login">
         <img src="./assets/images/google.png" class="google-img">
@@ -16,7 +24,58 @@
         <button (click)="submitDetails()">Submit</button>
       </div>
     </div>
-    <div class="register">
+
+    <!-- login form ends -->
+
+    <!-- Register form starts -->
+
+    <div class="register" *ngIf="data.param === 'register' || data.param === 'Schedule Visit'">
+      <div class="personal-details">Personal Details<span class="mandatory">All Fields are mandatory.</span></div>
+     <form [formGroup]="userDetails" (ngSubmit)="submitDetails(userDetails)">
+      <div class="user-type" *ngIf="data.param === 'register'">
+        I am
+        <div class="user">
+          <input type="radio" class="styled-radio" name="typeOfUser" value="Owner"  formControlName="typeOfUser">
+          <label class="type">Owner</label>
+        </div>
+        <div class="user">
+          <input type="radio" class="styled-radio" name="typeOfUser" value="Tenant"  formControlName="typeOfUser">
+          <label class="type">Tenant</label>
+        </div>
+      </div>
+      <div class="fields">
+        <input type="text" placeholder="Enter Your Name" name="name" class="input-box"  formControlName="name">
+      </div>
+      <div class="fields">
+        <input type="text" placeholder="Enter Your Email" name="email" class="input-box" formControlName="email">
+      </div>
+      <div class="fields">
+        <input type="text" placeholder="Enter Your Mobile" name="mobile" class="input-box" formControlName="mobileNum">
+      </div>
+      <div class="fields"  *ngIf="data.param === 'register'">
+        <input type="password" placeholder="Password" name="password" class="input-box"  formControlName="password">
+      </div>
+      <div class="fields"  *ngIf="data.param === 'register'">
+        <input type="password" placeholder="Confirm Password" name="confirmPassword" class="input-box"  formControlName="conFirmPass">
+      </div>
+      <div class="fields submit">
+          <button type="submit" [disabled]="!userDetails.valid">Submit</button>
+      </div>
+     </form>
     </div>
+
+    <!-- Register form ends -->
+
+    <!-- Add Review Form starts -->
+
+    <div class="review" *ngIf="data.param === 'review'">
+      <div class="comments"><textarea rows="5" cols="50" placeholder="please write comments here..."></textarea></div>
+      <div class="submit">
+        <button (click)="submitDetails()">Submit</button>
+      </div>
+    </div>
+
+    <!-- Add Review Form Ends -->
+
   </div>
 </div>

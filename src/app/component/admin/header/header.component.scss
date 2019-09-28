@@ -1,0 +1,31 @@
+@import "~src/assets/stylesheet/fontStyle.scss";
+@import "~src/assets/stylesheet/color";
+
+.city-name-collection-wrapper{
+    padding: 10px 50px;
+    background-color: $sky_Blue;
+    @extend .font-style;    
+    box-sizing: border-box;
+    z-index: 1;
+    .header-list{
+        text-align: right;
+    }
+    .list{
+        display: inline-block;
+        padding:  0 10px;
+        border-right: 1px solid;
+        color: white;
+        cursor: pointer;
+        &:last-of-type{
+            padding-right: 0px;
+            border: none;
+        }
+    }
+    /** make header sticky **/
+    
+&.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }  
+}

@@ -1,3 +1,14 @@
+
+<header-list></header-list>
 <div class="fav-list-container">
-<hostel-list></hostel-list>
+    <div *ngIf = "favouriteFlag">
+        <hostel-list></hostel-list>
+    </div>
+    <div *ngIf = "!favouriteFlag">
+        <div class = "star-icon">
+            <img src="./assets/images/iconfinder_star.png">
+        </div>
+        <div class="make-fav-text saved-msg">You have not saved anything yet.</div>
+        <div class="make-fav-text">From Home click <img src = "./assets/images/iconfinder_love_no_color.svg" width="20px" height="20px"> for making it favourite</div>
+    </div>
 </div>

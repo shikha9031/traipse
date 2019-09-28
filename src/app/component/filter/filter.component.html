@@ -9,7 +9,7 @@
     <div class="filter">
         <div class="type" *ngFor=" let list of filterArr.result; let i = index">{{list.label}}
             <span class="down-arrow">
-            <img src="./assets/images/iconfinder.svg" width="20px" *ngIf="!list.show" (click)="list.show = !list.show">
+            <img src="./assets/images/iconfinder_down_arrow.svg" width="20px" *ngIf="!list.show" (click)="list.show = !list.show">
             <img src="./assets/images/iconfinder_arrow_up.svg" width="20px" *ngIf="list.show" (click)="list.show = !list.show">
         </span>
             <div class="filter-list-dropdown-radiobuttons wrapper"*ngIf="list.chooseOption == 'radio' && list.show">

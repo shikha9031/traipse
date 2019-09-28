@@ -2,8 +2,9 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { City } from '../../interface/city';
 import { Observable } from "rxjs";
-import { CommonInterface } from '../../interface/common_interface';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { GetUrlService  } from '../../service/get-url.service';
 
 declare var $:any;
 
@@ -15,25 +16,35 @@ declare var $:any;
 export class HeaderListComponent implements OnInit {
 
 /** header variables declarations*/
-  cityArr: City;
+  cityArr: City[];
 
-  constructor(private _store:Store<City>, private _elRef:ElementRef , private router:Router) { }
+  constructor(
+     private _store:Store<City>,
+     private _elRef:ElementRef,
+     private router:Router,
+     public dialog: MatDialog,
+     private _getUrlService:GetUrlService) { }
 
   ngOnInit() {
-    this._store.select<City>(res=>res).subscribe((value:any) =>{
-      this.cityArr = value.cityReducer;
-    });
-    $(window).scroll(function (event) {
-      var scroll = $(window).scrollTop();
-      // Do something  
-      if(scroll>0){
-        $(".city-name-collection-wrapper").css("top","0");
-      }
-      else{
-        $(".city-name-collection-wrapper").css("top","104px");
-      }
-  });
 
+    /** city array getting from store */
+
+    this._store.select('cityReducer').subscribe((value:City[]) =>{
+      this.cityArr = value;
+    });
+
+    /*** sticky headers code*/
+    
+    $(window).scroll(function (event) {
+      var header = document.getElementById("myHeader");
+      var sticky = header.offsetTop;
+      if (window.pageYOffset > sticky) {
+          header.classList.add("sticky");
+        } else {
+          header.classList.remove("sticky");
+        }
+  });
+  
   }
 
   /** close dropdowns on clicking outside */
@@ -53,5 +64,18 @@ export class HeaderListComponent implements OnInit {
     window.scroll(0,0);
     this.router.navigate(['/home']);
   }
-  
+
+  /** show localities dropdown in city */
+  showList(param:City){
+    param.show = !param.show;
+    this.cityArr.forEach((element:City) => {
+      if(element != param) element.show = false;
+    });
+  }
+   /** dashboard open  */
+
+   openDashBoard(){  
+    this._getUrlService.setCurrentUrlVal(false);          
+      this.router.navigate(['/','dashboard']);
+  }
 }

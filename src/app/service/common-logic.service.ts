@@ -12,6 +12,7 @@ export class CommonLogicService {
    initialSetParams(payload: City[]): City[] {
     for (let i in payload) {
       payload[i].show = false;
+      payload[i].showLocality = false;
     }
     return [...payload];
   }

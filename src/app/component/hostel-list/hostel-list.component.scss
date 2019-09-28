@@ -4,10 +4,9 @@
 .hostel-list-container{
     .img-container{
         display: inline-block;
-        width: 34%;
         .img-size{
-            width: 380px;
-            height: 300px;
+            width: 250px;
+            height: 200px;
         }
     }
    
@@ -16,7 +15,7 @@
         box-shadow: 3px 2px 2px $sky_Blue;
         margin-bottom: 10px;
         width: 100%;
-        height: 300px;
+        position: relative;
         .desc{
             display: inline-block;
             vertical-align: top;
@@ -30,83 +29,58 @@
                     font-weight: 600;
                     color: $Limed_Spruce;
                     font-family: $fontFamily;
+                    margin-bottom: 10px;
                 }
                 .review{
                     color: $Limed_Spruce;
                     font-family: $fontFamily;
+                    margin-bottom: 10px;
                     a{
                         text-decoration: none;                    
                     }
                 }
-            }
-            .booking{
-                float: right;
-                button{
-                    color: white;
-                    padding: 15px;
-                    background-color: $sky_Blue;
-                    border: none;
-                    font-weight: 600;
-                    font-size: 15px;
-                }
-            }
-
-            .sharing{
-                font-family: $fontFamily;
-                margin-bottom: 10px;
-                .label{
-                    font-size: 20px;
-                    text-align: center;
+                .pg-for{
+                    @extend .font-style;
                     margin-bottom: 10px;
                 }
-                .sharing-data-table{
-                    width: 100%;
-                    .table-header{
-                        background-color: #1c2a48;
-                        color: white;
-                        border: 1px solid #1c2a48;
-                    }
-                    tr{
-                        text-align: center;
-                        th{
-                            padding: 5px;
-                        }
-                        .even{
-                            background-color: #ececec;
-                            border: 1px solid #ececec;
-                        }
-                        .odd{
-                            background-color: white;
-                            border: 1px solid white;
-                        }
-                    }
-                }
             }
-            .location{
+            .item-container{
                 font-family: $fontFamily;
                 color: $Limed_Spruce;  
-                .location_label{
+                margin-bottom: 10px;
+                .item-label{
                     font-weight: 600;                     
                 }             
             }
-            .favourite{
-                float: right;
-                .fav-icon{
-                    display: inline-block;
-                    position: relative;
-                    .no-color-icon-size{
-                        width: 20px;
-                        height: 20px;
-                        position: absolute;
-                        right: 10px;
-                    }
-                    .color-icon-size{
-                        width: 35px;
-                        height: 35px;
-                        position: absolute;
-                        right: 2px;
-                        top: -7px;
-                    }
+        }
+        .booking{
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            button{
+                color: $white;
+                padding: 15px;
+                background-color: $sky_Blue;
+                border: none;
+                font-weight: 600;
+                font-size: 15px;
+                cursor: pointer; 
+                border-radius: 2px;                  
+            }
+        }
+        .favourite{
+            position: absolute;
+            right: 15px;
+            bottom: 10px;
+            .fav-icon{
+                cursor: pointer;
+                .no-color-icon-size{
+                    width: 20px;
+                    height: 20px;
+                }
+                .color-icon-size{
+                    width: 35px;
+                    height: 35px;
                 }
             }
         }

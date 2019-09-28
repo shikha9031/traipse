@@ -1,0 +1,67 @@
+<header-list></header-list>
+<div class="book-now-container">
+  <div class="img-container">
+    <div class="small-img">
+      <span *ngFor="let list of hostel_arr.hostelObj.img; let i = index" class="multi-img-list" (click)="getImg(list)">
+          <img src={{list}} width="100px" height="100px">
+        </span>
+    </div>
+    <div class="big-img">
+      <img src={{hostelImg}} width="400px" height="400px">
+    </div>
+    <div class="make-fav" (click)="makeFav()" [style.padding]="hostel_arr.hostelObj.favFlag ? '7px 7px 1px' : '14px 14px 10px'">
+      <img src="./assets/images/iconfinder_love_no_color.svg" width="20px" height="20px" *ngIf="!hostel_arr.hostelObj.favFlag">
+      <img src="./assets/images/iconfinder_love_red.svg" width="35px" height="35px" *ngIf="hostel_arr.hostelObj.favFlag">
+    </div>
+    <div class="book-now"><button class="book-now-btn" (click)="scheduleVisit('Schedule Visit')">Schedule A Visit</button></div>
+  </div>
+  <div class="desc-container">
+    <div class="desc">
+      <div class="header">
+        <div class="label">{{hostel_arr.hostelObj.label}}</div>
+        <div class="pg-for item-container">
+          <span class="item-label">PG For :&nbsp; </span>
+          <span>{{hostel_arr.hostelObj.pg_for}}</span>
+        </div>
+        <div class="item-container">
+          <span class="item-label">Rating :&nbsp; </span>
+          <span *ngFor="let val of counter(hostel_arr.hostelObj.rating)">
+              <img src="assets/images/iconfinder_star.svg">
+          </span>
+        </div>
+      </div>
+      <div class="sharing">
+        <div class="label">Sharing</div>
+        <div>
+          <table class="sharing-data-table">
+            <tr class="table-header">
+              <th>Sharing</th>
+              <th>Price</th>
+              <th>Available</th>
+              <th>Amenities</th>
+            </tr>
+            <tr *ngFor="let val of hostel_arr.hostelObj.price; let odd = odd ; let even = even">
+              <td [ngClass]="{odd:odd, even:even}">{{val.sharing}}</td>
+              <td [ngClass]="{odd:odd, even:even}">{{val.price}}</td>
+              <td [ngClass]="{odd:odd, even:even}">{{val.available}}</td>
+              <td [ngClass]="{odd:odd, even:even}">{{val.amenities}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="item-container">
+        <span class="item-label"> Location :&nbsp; </span>
+        <span> {{hostel_arr.hostelObj.location}}</span>
+      </div>
+      <div class="item-container">
+        <span class="item-label"> Contact Number :&nbsp; </span>
+        <span> {{hostel_arr.hostelObj.owner_contact_num}}</span>
+      </div>
+      <div class="item-container">
+        <span class="item-label"> Food Available :&nbsp; </span>
+        <span> {{hostel_arr.hostelObj.food_available}}</span>
+      </div>
+      <div class="review" (click)="addReview('review')">Add your Review</div>
+    </div>
+  </div>
+</div>

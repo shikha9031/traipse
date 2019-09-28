@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { ModalComponent } from '../modal/modal.component';
+import { Router } from '@angular/router';
 
 declare const gapi: any;
 
@@ -11,7 +12,8 @@ declare const gapi: any;
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  showUserHeader:boolean = false;
+  constructor(public dialog: MatDialog, private router:Router) { }
 
   ngOnInit() {}
 
@@ -21,9 +23,9 @@ export class HeaderComponent implements OnInit {
     let dialogRef;
      if(this.dialog.openDialogs){
         dialogRef = this.dialog.open(ModalComponent, {
+        data:{ param:param }
        });
        dialogRef.afterClosed().subscribe(result => {
-         console.log('The dialog was closed');
        });
      }   
    }
@@ -35,7 +37,8 @@ export class HeaderComponent implements OnInit {
    signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
-      console.log('User signed out.');
     });
   }
+
+ 
 }

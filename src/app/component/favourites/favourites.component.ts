@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { CommonInterface } from '../../interface/common_interface';
 
 @Component({
   selector: 'app-favourites',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FavouritesComponent implements OnInit {
 
-  constructor() { }
+  favouriteFlag:boolean = false;
+
+  constructor(private _store:Store<CommonInterface>) { }
 
   ngOnInit() {
+    this._store.select('commonVariableReducer').subscribe((res:CommonInterface)=>{
+      this.favouriteFlag = res.favHostelList;
+    });
   }
-
 }

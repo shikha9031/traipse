@@ -1,43 +1,93 @@
 @import "~src/assets/stylesheet/fontStyle";
 @import "~src/assets/stylesheet/color";
 
-.form{
-    .label{
-        text-align: center;
-        margin-bottom: 10px;
-        color: $Red_orange;
-        font-weight: 600;
-        font-size: 25px;
-        font-family: $fontFamily;        
-    }
-    .login{
-        font-family: $fontFamily;
-        .username, .password, .google-sign-in{
+.form-wrapper{
+    min-width: 300px;
+    .form{
+        font-family: $fontFamily;  
+        .label{
+            text-align: center;
+            margin-bottom: 15px;
+            color: $Red_orange;
+            font-weight: 600;
+            font-size: 25px;             
+        }
+        .user-info{
             margin-bottom: 10px;
-            border: 1px solid #4081ed;
-            input{
-                padding: 10px;
-                width: 300px;
+            color: #07c7f3;
+        }
+        .login{
+            font-family: $fontFamily;
+            .username, .password, .google-sign-in{
+                margin-bottom: 10px;
+                border: 2px solid #105b79;
+                input{
+                    padding: 10px;
+                    width: 300px;
+                }
+            }
+             
+            .google-login{
+                position: relative;
+                .google-img{
+                    height: 30px;
+                    width: 30px;
+                    position: absolute;
+                    top: 6px;
+                    left: 10px;
+                }
+                .google-sign-in{
+                    padding: 10px 50px;
+                    width: 100%;
+                    background-color: white;
+                    text-align: left;
+                    font-size: 16px;
+                    cursor: pointer;
+                }
+            }
+            .already-sign-in{
+                margin-bottom: 10px;
+                font-size: 14px;
             }
         }
-         
-        .google-login{
-            position: relative;
-            .google-img{
-                height: 30px;
-                width: 30px;
-                position: absolute;
-                top: 4px;
-                left: 10px;
+        .register{
+            .personal-details{
+                font-size: 20px;
+                font-weight: 500;
+                margin-bottom: 10px;
+                .mandatory{
+                    font-size: 11px;
+                    display: block;
+                    margin-top: 8px;
+                    color: red;
+                }
             }
-            .google-sign-in{
-                padding: 10px 50px;
-                width: 100%;
-                background-color: white;
-                border: 1px solid skyblue;
-                text-align: left;
-                font-size: 16px;
+            .user-type{
+                color: grey;
+                margin: 10px 0;
+                .user{
+                    position: relative;
+                    display: inline-block;
+                    padding: 10px;
+                    color: #3c4951;
+                    .type{
+                        display: inline-block;                    
+                    }
+                    input{
+                        vertical-align: top;
+                    }
+                }
             }
+                .fields{
+                    margin-bottom: 10px;                
+                    .input-box
+                    {
+                        width: 100%;
+                        padding: 10px;
+                        box-sizing: border-box;
+                        border: 2px solid #105b79;
+                    }
+                }
         }
         .submit{
             text-align: center;
@@ -49,5 +99,11 @@
                 cursor: pointer;
             }
         }
+        .review{
+            .comments{
+                margin-bottom: 10px;
+            }
+        }
     }
 }
+

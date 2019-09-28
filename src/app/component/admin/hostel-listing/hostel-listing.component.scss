@@ -1,0 +1,39 @@
+@import "~src/assets/stylesheet/fontStyle";
+@import "~src/assets/stylesheet/color";
+
+.hostel-details-form-container{
+    min-width: 300px;
+    form{
+        width: 48%;
+        margin: 0 auto;
+        padding: 20px 30px;
+        .label{
+            text-align: center;
+            margin-bottom: 15px;
+            color: $Red_orange;
+            font-weight: 600;
+            font-size: 25px;             
+        }
+        .fields{
+            margin-bottom: 10px;                
+            .input-box
+            {
+                width: 100%;
+                padding: 10px;
+                box-sizing: border-box;
+                border: 2px solid #105b79;
+            }
+        }
+        .submit{
+            text-align: center;
+            button{
+                padding: 10px 20px;
+                border: none;
+                color: $white;
+                background-color: $sky_Blue;
+                cursor: pointer;
+            }
+        }
+    }
+}
+

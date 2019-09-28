@@ -1,6 +1,23 @@
+@import "~src/assets/stylesheet/fontStyle.scss";
+@import "~src/assets/stylesheet/color";
+
 .fav-list-container{
     width: 75%;
     margin: 45px auto;
-
+    .star-icon{
+        border: 1px solid;
+        border-radius: 50%;
+        display: table;
+        margin: auto;
+    }
+    .make-fav-text{
+        text-align: center;
+        margin: 10px 0;
+        color: $mine_shaft;
+        @extend .font-style;
+        &.saved-msg{
+            font-size: 20px;
+        }
+    }
 }
 

@@ -1,24 +1,46 @@
 <div class="search-container">
   <div class="title">Find Hostel !! We provide best options</div>
   <div class="search-box">
-    <div class="search-input-box"><input type="text" placeholder="search by locality name"></div>
+    <div class="search-input-box">
+      <mat-form-field>
+        <input matInput [(ngModel)]="getDate" (ngModelChange)="getDateFun(getDate)" [matDatepicker]="picker" placeholder="Choose a date" [min]="minDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
     <div class="choose-person-container" (clickOutside)="onClickedOutsidePerson($event)">
-      <div class="total-person" (click) = "personFlag = !personFlag">1 Person</div>
+      <div class="total-person" (click) = "personFlag = !personFlag">{{personCount}} Person</div>
       <div class="person-count" *ngIf="personFlag">
           <div class="wrapper">
-            <button>-</button>
-            <span>1 Person </span>
-            <button>+</button>
+            <button (click)="totalPerson('minus')" class="operator-btn">-</button>
+            <span>{{personCount}} Person </span>
+            <button (click)="totalPerson('add')" class="operator-btn">+</button>
           </div>
       </div>
     </div>
     <div class="gender-wrapper" (clickOutside)="onClickedOutsideGender($event)">
-      <div class="gender" (click) = "genderFlag = !genderFlag">Gender</div>
+      <div class="gender" (click) = "genderFlag = !genderFlag">{{genderObj}}</div>
       <div class="choose-gender" *ngIf="genderFlag">
-          <div class="category">Male</div>
-          <div class="category">Female</div>
-          <div class="category">Others</div>
+          <div class="category" (click)="chooseCategory('Male')">Male</div>
+          <div class="category" (click)="chooseCategory('Female')">Female</div>
+          <div class="category" (click)="chooseCategory('Others')">Others</div>
       </div>
+    </div>
+    <div class="location-wrapper" (clickOutside)="onClickedOutsideLocation($event)">
+        <div class="location" (click)="showLocations(); $event.stopPropagation()">{{location}}            
+            <span *ngIf="!showAvailableLocation"><img src="./assets/images/iconfinder_down_arrow.svg" width="20px"></span>
+            <span *ngIf="showAvailableLocation"><img src="./assets/images/iconfinder_arrow_up.svg" width="20px"></span>
+        </div>
+        <div *ngIf="showAvailableLocation" class="show-locations">
+          <div ><input class="search-box" type="text" [(ngModel)]="filterObj" placeholder="search by city" autocomplete="off"></div>
+          <div *ngFor = "let val of cityArr | filterPipe : filterObj; let i = index" class="city-wrapper">
+            <div class="city" (click)="showLocalities(val); $event.stopPropagation()"> {{val.name}} <span class="side-arrow"><img src="./assets/images/side_arrow.png"></span></div>
+            <div *ngIf = "val.showLocality" class="localities">
+                <div><input class="search-box" type="text" [(ngModel)]="localityObj" placeholder="search by localities" autocomplete="off"></div>                
+                <div *ngFor= "let list of val.locality | filterPipe : localityObj" (click)="chooseLocation(list, val)" class="each-localities">{{list}}</div>                
+            </div>
+          </div>
+        </div>
     </div>
     <button class="search-btn">Search</button>
   </div>

@@ -1,4 +1,3 @@
 export interface CommonInterface{
-    cityReducer:any,
-    hostelReducer:any
+   favHostelList : boolean;
 }
