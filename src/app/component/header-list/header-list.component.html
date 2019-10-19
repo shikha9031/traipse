@@ -1,5 +1,5 @@
 
-<div class="city-name-collection-wrapper" id="myHeader">
+<div class="city-name-collection-wrapper" id="myHeader"  (scroll)="onScrollFunCall(event)">
   <div *ngFor="let list of cityArr; let i = index" class="city-name list" (clickOutside)="onClickedOutside($event,list)">
      <span (click)="showList(list)" >{{list.name}}</span>
      <div *ngIf="list.show" class="locality">

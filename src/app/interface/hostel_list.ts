@@ -1,16 +1,20 @@
 export interface price{
     sharing:string,
-    price:string
+    price:string,
+    available:string;
 }
-
+export interface ImgClass{
+    url:''
+}
 export interface Hostel{
-    img:string;
+    img:ImgClass[];
     label:string;
-    price:price;
-    rating:number;
+    price:price[];
+    rating:string;
     favFlag?:boolean;
     pg_for:string;
-    food_available?:string;
+    food_available?:boolean;
+    contact_number?:string;
 }
 export interface HostelInt{
     hostelArr:Hostel[],

@@ -10,23 +10,36 @@
             margin-bottom: 15px;
             color: $Red_orange;
             font-weight: 600;
-            font-size: 25px;             
+            font-size: 20px;  
+            text-transform: capitalize;           
         }
         .user-info{
             margin-bottom: 10px;
             color: #07c7f3;
         }
+        .username, .password, .google-sign-in{
+            margin-bottom: 10px;
+            border: 2px solid #105b79;
+            input{
+                padding: 10px;
+                width: 300px;
+            }
+        }
+        .forgot-password{
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: $Red_orange;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .error-block{
+            font-size: 13px;
+            display: block;
+            margin: 8px 0;
+            color: red;
+        }
         .login{
             font-family: $fontFamily;
-            .username, .password, .google-sign-in{
-                margin-bottom: 10px;
-                border: 2px solid #105b79;
-                input{
-                    padding: 10px;
-                    width: 300px;
-                }
-            }
-             
             .google-login{
                 position: relative;
                 .google-img{
@@ -45,6 +58,7 @@
                     cursor: pointer;
                 }
             }
+           
             .already-sign-in{
                 margin-bottom: 10px;
                 font-size: 14px;
@@ -55,8 +69,15 @@
                 font-size: 20px;
                 font-weight: 500;
                 margin-bottom: 10px;
+                .registration-success{
+                    font-weight: 500;
+                    margin-bottom: 10px;
+                    font-size: 13px;
+                    color: olivedrab;
+                    text-align: center;
+                }
                 .mandatory{
-                    font-size: 11px;
+                    font-size: 13px;
                     display: block;
                     margin-top: 8px;
                     color: red;
@@ -93,11 +114,18 @@
             text-align: center;
             button{
                 padding: 10px 20px;
-                border: none;
-                color: $white;
-                background-color: $sky_Blue;
-                cursor: pointer;
+                border: none;       
+                &.disable-btn{
+                    color: #615f5f;
+                    background-color: #adadad;
+                }
+                &.enable-btn{
+                    color: $white;
+                    background-color: $sky_Blue;
+                    cursor: pointer;                    
+                }
             }
+
         }
         .review{
             .comments{

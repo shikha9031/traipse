@@ -1,28 +1,33 @@
 <div class="form-wrapper">
   <div class="form">
-    <div class="label">{{data.param.toUpperCase()}}</div>
+    <div class="label">{{data.param}}</div>
     <div *ngIf="data.param === 'Schedule Visit'" class="user-info">
       We will use your data for sending the notification to Owner
     </div>
     <!-- login form starts-->
 
     <div class="login" *ngIf="data.param === 'login'">
-      <div class="username">
-        <input type="email" autocomplete="off" name="username" id="username" placeholder="User Name" />
-      </div>
-      <div class="password">
-        <input type="password" name="password" autocomplete="off" id="password" placeholder="Password" />
-      </div>
-      <div class="already-sign-in">
-        If Already Signup. Then Login With Google.
-      </div>
-      <div class="google-login">
-        <img src="./assets/images/google.png" class="google-img">
-        <button class="google-sign-in" (click)="socialSignIn('google')">Sign in with Google</button>
-      </div>
-      <div class="submit">
-        <button (click)="submitDetails()">Submit</button>
-      </div>
+      <span class="error-block">{{loginErrorMsg}}</span>
+      <form [formGroup]="userLoginObj" (ngSubmit)="userLogin(userLoginObj)">
+        <div class="username">
+          <input type="email" autocomplete="off" name="username" id="username" placeholder="User Name" formControlName="email" />
+        </div>
+        <div class="password">
+          <input type="password" name="password" autocomplete="off" id="password" placeholder="Password" formControlName="password"
+          />
+        </div>
+        <div class="already-sign-in">
+          If Already Signup. Then Login With Google.
+        </div>
+        <div class="google-login">
+          <img src="./assets/images/google.png" class="google-img">
+          <button type="button" class="google-sign-in" (click)="socialSignIn('google')">Sign in with Google</button>
+        </div>
+        <div class="forgot-password" (click)="data.param = 'Forgot Password'; clearForgotFields()">Forgot Password?</div>
+        <div class="submit">
+          <button type="submit" [disabled]="!userLoginObj.valid" [class.disable-btn]="!userLoginObj.valid" [class.enable-btn]="userLoginObj.valid" >Submit</button>
+        </div>
+      </form>
     </div>
 
     <!-- login form ends -->
@@ -30,41 +35,61 @@
     <!-- Register form starts -->
 
     <div class="register" *ngIf="data.param === 'register' || data.param === 'Schedule Visit'">
-      <div class="personal-details">Personal Details<span class="mandatory">All Fields are mandatory.</span></div>
-     <form [formGroup]="userDetails" (ngSubmit)="submitDetails(userDetails)">
-      <div class="user-type" *ngIf="data.param === 'register'">
-        I am
-        <div class="user">
-          <input type="radio" class="styled-radio" name="typeOfUser" value="Owner"  formControlName="typeOfUser">
-          <label class="type">Owner</label>
+      <div class="personal-details">Personal Details
+        <div class="registration-success">{{registrationSuccess}}</div>
+        <span class="mandatory">All Fields are mandatory.</span>
+      </div>
+      <span class="error-block">{{registrationErrMsg}}</span>
+      <form [formGroup]="userDetails" (ngSubmit)="registerDetails(userDetails)">
+        <div class="user-type" *ngIf="data.param === 'register'">
+          I am
+          <div class="user">
+            <input type="radio" class="styled-radio" name="typeOfUser" value="Owner" formControlName="typeOfUser">
+            <label class="type">Owner</label>
+          </div>
+          <div class="user">
+            <input type="radio" class="styled-radio" name="typeOfUser" value="Tenant" formControlName="typeOfUser">
+            <label class="type">Tenant</label>
+          </div>
         </div>
-        <div class="user">
-          <input type="radio" class="styled-radio" name="typeOfUser" value="Tenant"  formControlName="typeOfUser">
-          <label class="type">Tenant</label>
+        <div class="fields">
+          <input type="text" placeholder="Enter Your Name" name="name" class="input-box" formControlName="name">
         </div>
-      </div>
-      <div class="fields">
-        <input type="text" placeholder="Enter Your Name" name="name" class="input-box"  formControlName="name">
-      </div>
-      <div class="fields">
-        <input type="text" placeholder="Enter Your Email" name="email" class="input-box" formControlName="email">
-      </div>
-      <div class="fields">
-        <input type="text" placeholder="Enter Your Mobile" name="mobile" class="input-box" formControlName="mobileNum">
-      </div>
-      <div class="fields"  *ngIf="data.param === 'register'">
-        <input type="password" placeholder="Password" name="password" class="input-box"  formControlName="password">
-      </div>
-      <div class="fields"  *ngIf="data.param === 'register'">
-        <input type="password" placeholder="Confirm Password" name="confirmPassword" class="input-box"  formControlName="conFirmPass">
-      </div>
-      <div class="fields submit">
-          <button type="submit" [disabled]="!userDetails.valid">Submit</button>
-      </div>
-     </form>
+        <div class="fields">
+          <input type="email" placeholder="Enter Your Email" name="email" class="input-box" formControlName="email">
+        </div>
+        <div class="fields">
+          <input type="text" placeholder="Enter Your Mobile" (keypress)="numberOnly($event)"  name="mobile" class="input-box" formControlName="mobileNum">
+        </div>
+        <div class="fields" *ngIf="data.param === 'register'">
+          <input type="password" placeholder="Password" name="password" class="input-box" formControlName="password">
+        </div>
+        <div class="fields" *ngIf="data.param === 'register'">
+          <input type="password" placeholder="Confirm Password" name="confirmPassword" class="input-box" formControlName="conFirmPass">
+        </div>
+        <div class="fields submit">
+          <button type="submit" [disabled]="!userDetails.valid"  [class.disable-btn]="!userDetails.valid" [class.enable-btn]="userDetails.valid" >Submit</button>
+        </div>
+      </form>
     </div>
 
     <!-- Register form ends -->
+
+    <!-- Forgot password code below -->
+
+    <div class="forgot-password" *ngIf="data.param == 'Forgot Password'">
+        <span class="error-block">{{forgotErrMsg}}</span>        
+      <form [formGroup]="forgotPassObj" (ngSubmit)="forgotPassword(forgotPassObj)">
+        <div class="username">
+          <input type="email" autocomplete="off" name="email" id="email" placeholder="Enter Email" formControlName="email" />
+        </div>
+        <div class="forgot-password" (click)="data.param = 'login'; clearLoginFields()">Back</div>        
+        <div class="submit">
+          <button type="submit" [disabled]="!forgotPassObj.valid" [class.disable-btn]="!forgotPassObj.valid" [class.enable-btn]="forgotPassObj.valid">Submit</button>
+        </div>
+      </form>
+    </div>
+    <!-- Forgot password code above -->
 
     <!-- Add Review Form starts -->
 

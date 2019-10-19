@@ -16,7 +16,6 @@ export class HostelListComponent implements OnInit {
 
   /** hostel variable */
   hostel_arr:HostelInt;
-  arr = new Array<any>();
 
   constructor(
         private _store:Store<HostelInt>,

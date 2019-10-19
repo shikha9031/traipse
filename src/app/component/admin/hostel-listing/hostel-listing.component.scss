@@ -1,21 +1,30 @@
 @import "~src/assets/stylesheet/fontStyle";
 @import "~src/assets/stylesheet/color";
+@import "~src/assets/stylesheet/loader";
 
 .hostel-details-form-container{
     min-width: 300px;
+    .label{
+        text-align: center;
+        margin-bottom: 15px;
+        color: $Red_orange;
+        font-weight: 600;
+        font-size: 25px;             
+    }
+
     form{
         width: 48%;
         margin: 0 auto;
         padding: 20px 30px;
-        .label{
-            text-align: center;
-            margin-bottom: 15px;
-            color: $Red_orange;
-            font-weight: 600;
-            font-size: 25px;             
-        }
+        background-color: #e6e6e6;
+      .form-label{
+        margin-bottom: 10px;
+        font-weight: 600;
+        color: #3c4951;
+      }
         .fields{
-            margin-bottom: 10px;                
+            margin-bottom: 10px;   
+            background: white;             
             .input-box
             {
                 width: 100%;
@@ -24,8 +33,30 @@
                 border: 2px solid #105b79;
             }
         }
+       
+        .types-of-sharing{
+            border: 2px solid #0f258e;
+            padding: 10px;
+            margin-bottom: 10px;
+            @extend %loader-spinner;
+            .img-list{
+                display: inline-block;
+                margin-left: 10px;
+            }
+            .img-loader{
+                text-align: center;
+                .loader{
+                    display: inline-block;
+                }
+            }
+        }
+        .sharing-container{
+            background: no-repeat;
+        }
         .submit{
             text-align: center;
+            background: no-repeat;
+            margin: 10px 0;
             button{
                 padding: 10px 20px;
                 border: none;

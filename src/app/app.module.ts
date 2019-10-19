@@ -10,6 +10,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider, LinkedinLoginProvider } from "angular-6-social-login";
 import { MatNativeDateModule, MatDatepickerModule, MatFormFieldModule, MatDialogModule, MatInputModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
+import * as $ from 'jquery';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 
 /** custom modules import */
 
@@ -26,6 +29,7 @@ import { userReducer } from './store/reducers/user-details.reducer';
 /**custom service */
 import { CommonLogicService } from './service/common-logic.service';
 import { GetUrlService } from './service/get-url.service';
+import { UserService } from './service/user.service';
 
 /** custom component import  */
 
@@ -80,7 +84,7 @@ export function getAuthServiceConfigs() {
     FavouritesComponent,
     ModalComponent,
     BookNowComponent,
-    FilterPipe
+    FilterPipe,
   ],
   imports: [
     ClickOutsideModule,
@@ -94,10 +98,12 @@ export function getAuthServiceConfigs() {
     MatFormFieldModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    BrowserAnimationsModule,    
+    BrowserAnimationsModule,  
+    ToastrModule.forRoot(),  
     MatDialogModule,
     MatInputModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     CommonLogicService,

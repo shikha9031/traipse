@@ -13,6 +13,9 @@ declare const gapi: any;
 export class HeaderComponent implements OnInit {
 
   showUserHeader:boolean = false;
+  isUserLoggedIn:boolean = false;
+  openProfileDropDown:boolean = false;
+
   constructor(public dialog: MatDialog, private router:Router) { }
 
   ngOnInit() {}
@@ -40,5 +43,9 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  /** open profile drop down */
  
+  showDropDown(){
+    this.openProfileDropDown = !this.openProfileDropDown;
+  }
 }

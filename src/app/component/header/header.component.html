@@ -1,7 +1,14 @@
 <div class="header-wrapper">
     <div class="logo"><img src="../../assets/images/logo.jpg"></div>
-    <div class="user-authenticate">
+    <div class="user-authenticate"  *ngIf="!isUserLoggedIn">
       <span (click)="openDialog('login')">Login</span>
       <span (click)="openDialog('register')">Signup</span>
+    </div>
+    <div class="profile" *ngIf="isUserLoggedIn">
+      <span class="profile-name" (click)="showDropDown()" style="display:block"> Shikha Agarwal </span>
+      <div class="drop-down" *ngIf="openProfileDropDown">
+        <div class="row" (click)="openDialog('Forgot Password')">Forgot Password</div>
+        <div class="row">Sign Out</div>        
+      </div>
     </div>
 </div>

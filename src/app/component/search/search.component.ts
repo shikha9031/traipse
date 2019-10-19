@@ -101,6 +101,5 @@ export class SearchComponent implements OnInit {
   /** datepicker Logic */
 
   getDateFun(param){
-    console.log(param.toLocaleDateString());
   }
 }
