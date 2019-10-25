@@ -1,4 +1,4 @@
-@import "~src/assets/stylesheet/fontStyle.scss";
+@import "~src/assets/stylesheet/fontStyle";
 @import "~src/assets/stylesheet/color";
 
 .city-name-collection-wrapper{
@@ -13,10 +13,7 @@
         border-right: 1px solid;
         color: white;
         cursor: pointer;
-        &:last-of-type{
-            padding-right: 0px;
-            border: none;
-        }
+      
         span{
             cursor: pointer;            
         }
@@ -34,6 +31,14 @@
                 }
             }
         }
+        /** remove when ther are more than one city name present **/
+        &.city-name{
+            border: none;
+        }
+    }
+    .list:last-child{
+        padding-right: 0px;
+        border-right: none ;
     }
     .header-list{
         float: right;

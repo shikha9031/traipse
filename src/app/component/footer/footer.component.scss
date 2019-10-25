@@ -26,13 +26,20 @@
             .submit-button{
                 button{
                     padding: 10px 20px;
-                    background-color: $sky_Blue;
                     border: none;
-                    color: white;
                     font-size: 16px;
                     font-weight: 600;
                     cursor: pointer;
+                    &.disable-btn{
+                        color: #615f5f;
+                        background-color: #adadad;
+                    }
+                    &.enable-btn{
+                        background-color: $sky_Blue;
+                        color: white;                        
+                    }
                 }
+
             }
         }
     }

@@ -15,10 +15,11 @@ import { HostelListingComponent } from './hostel-listing/hostel-listing.componen
 /** custom service import */
 
 import { HostelListService } from './service/hostel-list.service';
+import { UserFeedbackComponent } from './user-feedback/user-feedback.component';
 
 
 @NgModule({
-  declarations: [AdminComponent, HeaderComponent, HostelListingComponent],
+  declarations: [AdminComponent, HeaderComponent, HostelListingComponent, UserFeedbackComponent],
   imports: [
     CommonModule,
     AdminRouterClass,

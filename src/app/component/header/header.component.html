@@ -4,11 +4,11 @@
       <span (click)="openDialog('login')">Login</span>
       <span (click)="openDialog('register')">Signup</span>
     </div>
-    <div class="profile" *ngIf="isUserLoggedIn">
-      <span class="profile-name" (click)="showDropDown()" style="display:block"> Shikha Agarwal </span>
-      <div class="drop-down" *ngIf="openProfileDropDown">
-        <div class="row" (click)="openDialog('Forgot Password')">Forgot Password</div>
-        <div class="row">Sign Out</div>        
+    <div class="profile" *ngIf="isUserLoggedIn" (clickOutside)="onClickedOutside($event)">
+      <span class="profile-name" (click)="showDropDown()" style="display:block"> {{userInfo.name}} </span>
+      <div *ngIf="openProfileDropDown" class="drop-down">
+          <div class="row" (click)="openDialog('update password')"> Update Password</div>
+          <div class="row" (click)="signOutUser()">Sign Out</div>
       </div>
     </div>
 </div>

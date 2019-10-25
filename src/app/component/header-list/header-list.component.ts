@@ -5,6 +5,7 @@ import { Observable } from "rxjs";
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { GetUrlService } from '../../service/get-url.service';
+import { CommonInterface } from '../../interface/common_interface';
 
 declare var $: any;
 
@@ -17,6 +18,8 @@ export class HeaderListComponent implements OnInit {
 
   /** header variables declarations*/
   cityArr: City[];
+  isUserLoggedIn:boolean;
+  typeOfUser:string;
 
   constructor(
     private _store: Store<City>,
@@ -33,6 +36,11 @@ export class HeaderListComponent implements OnInit {
       this.cityArr = value;
     });
 
+    /** check whether user is login or not */
+    this._store.select('commonVariableReducer').subscribe((res:CommonInterface) => {
+      this.isUserLoggedIn = res.isLoggedIn; 
+      if(this.isUserLoggedIn) this.typeOfUser = sessionStorage.getItem('typeOfUser');
+    })
   }
 
   /** close dropdowns on clicking outside */
@@ -64,7 +72,7 @@ export class HeaderListComponent implements OnInit {
 
   openDashBoard() {
     this._getUrlService.setCurrentUrlVal(false);
-    this.router.navigate(['/', 'dashboard']);
+    this.router.navigate(['/dashboard']);
   }
   
   /** onscroll function call */

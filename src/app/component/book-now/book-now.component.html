@@ -9,11 +9,15 @@
     <div class="big-img">
       <img src={{hostelImg}} width="400px" height="400px">
     </div>
-    <div class="make-fav" (click)="makeFav()" [style.padding]="hostel_arr.hostelObj.favFlag ? '7px 7px 1px' : '14px 14px 10px'">
+    <!--uncomment it when favourite section added-->
+
+    <!-- <div class="make-fav" (click)="makeFav()" [style.padding]="hostel_arr.hostelObj.favFlag ? '7px 7px 1px' : '14px 14px 10px'">
       <img src="./assets/images/iconfinder_love_no_color.svg" width="20px" height="20px" *ngIf="!hostel_arr.hostelObj.favFlag">
       <img src="./assets/images/iconfinder_love_red.svg" width="35px" height="35px" *ngIf="hostel_arr.hostelObj.favFlag">
-    </div>
-    <div class="book-now"><button class="book-now-btn" (click)="scheduleVisit('Schedule Visit')">Schedule A Visit</button></div>
+    </div> -->
+    <!-- <div class="book-now"><button class="book-now-btn" (click)="scheduleVisit('Schedule Visit')">Schedule A Visit</button></div> -->
+  
+    <!--uncomment above code  it when favourite section added-->
   </div>
   <div class="desc-container">
     <div class="desc">
@@ -40,7 +44,7 @@
               <th>Available</th>
               <th>Amenities</th>
             </tr>
-            <tr *ngFor="let val of hostel_arr.hostelObj.price; let odd = odd ; let even = even">
+            <tr *ngFor="let val of hostel_arr.hostelObj.sharing; let odd = odd ; let even = even">
               <td [ngClass]="{odd:odd, even:even}">{{val.sharing}}</td>
               <td [ngClass]="{odd:odd, even:even}">{{val.price}}</td>
               <td [ngClass]="{odd:odd, even:even}">{{val.available}}</td>
@@ -51,17 +55,24 @@
       </div>
       <div class="item-container">
         <span class="item-label"> Location :&nbsp; </span>
-        <span> {{hostel_arr.hostelObj.location}}</span>
+        <span> {{hostel_arr.hostelObj.lane}}</span>,&nbsp;
+        <span> {{hostel_arr.hostelObj.district}}</span>,&nbsp;
+        <span> {{hostel_arr.hostelObj.city}}</span>,&nbsp;
+        <span> {{hostel_arr.hostelObj.state}}</span>,&nbsp;
+        <span>{{hostel_arr.hostelObj.pincode}}</span>.
       </div>
       <div class="item-container">
         <span class="item-label"> Contact Number :&nbsp; </span>
-        <span> {{hostel_arr.hostelObj.owner_contact_num}}</span>
+        <span> {{hostel_arr.hostelObj.contact_num}}</span>
       </div>
       <div class="item-container">
         <span class="item-label"> Food Available :&nbsp; </span>
         <span> {{hostel_arr.hostelObj.food_available}}</span>
       </div>
-      <div class="review" (click)="addReview('review')">Add your Review</div>
+      <!--uncomment this when need to add review functionality-->
+
+      <!-- <div class="review" (click)="addReview('review')">Add your Review</div> -->
+       <!--uncomment above code this when need to add review functionality-->
     </div>
   </div>
 </div>

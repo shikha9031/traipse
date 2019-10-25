@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { ModalComponent } from '../modal/modal.component';
 import { Router } from '@angular/router';
+import { UserDetails } from '../../interface/user';
+import { Store } from '@ngrx/store';
+import { CommonInterface } from '../../interface/common_interface';
+import * as commonVariableRef from '../../store/actions/common_variable.action';
 
 declare const gapi: any;
 
@@ -15,10 +19,17 @@ export class HeaderComponent implements OnInit {
   showUserHeader:boolean = false;
   isUserLoggedIn:boolean = false;
   openProfileDropDown:boolean = false;
+  userInfo:UserDetails = { email:'', name:'', number:'',password:'',typeOfUser:'' };
 
-  constructor(public dialog: MatDialog, private router:Router) { }
+  constructor(public dialog: MatDialog, private router:Router, private _store:Store<any>) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  
+    this._store.select('commonVariableReducer').subscribe((res:CommonInterface) => {
+      this.isUserLoggedIn = res.isLoggedIn; 
+      if(this.isUserLoggedIn)this.userInfo.name = sessionStorage.getItem('name');
+    })
+  }
 
    /** modal opening code */
 
@@ -47,5 +58,18 @@ export class HeaderComponent implements OnInit {
  
   showDropDown(){
     this.openProfileDropDown = !this.openProfileDropDown;
+  }
+
+  /** click outside div */
+
+  onClickedOutside(e: any){
+    if (!(e.target.parentNode && e.target.parentNode.classList[0] === "drop-down")) {
+      this.openProfileDropDown = false;
+    }
+  }
+  /** sign out user */
+  signOutUser(){
+    sessionStorage.clear();
+    this._store.dispatch(new commonVariableRef.userLoggedInAction(false));    
   }
 }

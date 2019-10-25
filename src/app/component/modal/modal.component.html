@@ -7,7 +7,6 @@
     <!-- login form starts-->
 
     <div class="login" *ngIf="data.param === 'login'">
-      <span class="error-block">{{loginErrorMsg}}</span>
       <form [formGroup]="userLoginObj" (ngSubmit)="userLogin(userLoginObj)">
         <div class="username">
           <input type="email" autocomplete="off" name="username" id="username" placeholder="User Name" formControlName="email" />
@@ -16,16 +15,16 @@
           <input type="password" name="password" autocomplete="off" id="password" placeholder="Password" formControlName="password"
           />
         </div>
-        <div class="already-sign-in">
-          If Already Signup. Then Login With Google.
+        <!-- <div class="already-sign-in">
+          If signup with google account. Then Login With Google.
         </div>
         <div class="google-login">
           <img src="./assets/images/google.png" class="google-img">
           <button type="button" class="google-sign-in" (click)="socialSignIn('google')">Sign in with Google</button>
-        </div>
+        </div> -->
         <div class="forgot-password" (click)="data.param = 'Forgot Password'; clearForgotFields()">Forgot Password?</div>
         <div class="submit">
-          <button type="submit" [disabled]="!userLoginObj.valid" [class.disable-btn]="!userLoginObj.valid" [class.enable-btn]="userLoginObj.valid" >Submit</button>
+          <button type="submit" [disabled]="!userLoginObj.valid" [class.disable-btn]="!userLoginObj.valid" [class.enable-btn]="userLoginObj.valid">Submit</button>
         </div>
       </form>
     </div>
@@ -39,7 +38,6 @@
         <div class="registration-success">{{registrationSuccess}}</div>
         <span class="mandatory">All Fields are mandatory.</span>
       </div>
-      <span class="error-block">{{registrationErrMsg}}</span>
       <form [formGroup]="userDetails" (ngSubmit)="registerDetails(userDetails)">
         <div class="user-type" *ngIf="data.param === 'register'">
           I am
@@ -59,7 +57,7 @@
           <input type="email" placeholder="Enter Your Email" name="email" class="input-box" formControlName="email">
         </div>
         <div class="fields">
-          <input type="text" placeholder="Enter Your Mobile" (keypress)="numberOnly($event)"  name="mobile" class="input-box" formControlName="mobileNum">
+          <input type="text" placeholder="Enter Your Mobile" (keypress)="numberOnly($event)" name="mobile" class="input-box" formControlName="mobileNum">
         </div>
         <div class="fields" *ngIf="data.param === 'register'">
           <input type="password" placeholder="Password" name="password" class="input-box" formControlName="password">
@@ -68,7 +66,7 @@
           <input type="password" placeholder="Confirm Password" name="confirmPassword" class="input-box" formControlName="conFirmPass">
         </div>
         <div class="fields submit">
-          <button type="submit" [disabled]="!userDetails.valid"  [class.disable-btn]="!userDetails.valid" [class.enable-btn]="userDetails.valid" >Submit</button>
+          <button type="submit" [disabled]="!userDetails.valid" [class.disable-btn]="!userDetails.valid" [class.enable-btn]="userDetails.valid">Submit</button>
         </div>
       </form>
     </div>
@@ -78,12 +76,11 @@
     <!-- Forgot password code below -->
 
     <div class="forgot-password" *ngIf="data.param == 'Forgot Password'">
-        <span class="error-block">{{forgotErrMsg}}</span>        
       <form [formGroup]="forgotPassObj" (ngSubmit)="forgotPassword(forgotPassObj)">
         <div class="username">
-          <input type="email" autocomplete="off" name="email" id="email" placeholder="Enter Email" formControlName="email" />
+          <input type="email" autocomplete="off" name="email" id="ForgotPasswordEmail" placeholder="Enter Email" formControlName="email" />
         </div>
-        <div class="forgot-password" (click)="data.param = 'login'; clearLoginFields()">Back</div>        
+        <div class="forgot-password" (click)="data.param = 'login'; clearLoginFields()">Back</div>
         <div class="submit">
           <button type="submit" [disabled]="!forgotPassObj.valid" [class.disable-btn]="!forgotPassObj.valid" [class.enable-btn]="forgotPassObj.valid">Submit</button>
         </div>
@@ -91,9 +88,36 @@
     </div>
     <!-- Forgot password code above -->
 
+    <!--update password below-->
+
+    <div class="forgot-password" *ngIf="data.param == 'update password'">
+      <form [formGroup]="updatePasswordObj" (ngSubmit)="updatePassword(updatePasswordObj)">
+        <div class="username">
+          <input type="email" autocomplete="off" name="email" id="email" placeholder="Enter Email" formControlName="email" />
+        </div>
+        <div class="username">
+          <input type="password" placeholder="Password" name="password" class="input-box" formControlName="password">
+        </div>
+        <div class="username">
+          <input type="password" placeholder="Please give updated password" name="password" class="input-box" formControlName="updatePassword">
+        </div>
+        <div class="submit">
+          <button type="submit" [disabled]="!updatePasswordObj.valid" [class.disable-btn]="!updatePasswordObj.valid" [class.enable-btn]="updatePasswordObj.valid">Submit</button>
+        </div>
+      </form>
+    </div>
+
+    <!--update password above-->
+
     <!-- Add Review Form starts -->
 
     <div class="review" *ngIf="data.param === 'review'">
+      <div class="form-label"><label>Rating</label></div>
+      <div class="fields">
+        <select class="input-box" placeholder="Choose Rating"  name="ratingSelect">
+          <option *ngFor = "let list of [0,1,2,3,4]; let i = index" [ngValue]="list" name="rating">{{i+1}}</option>
+         </select>
+      </div>
       <div class="comments"><textarea rows="5" cols="50" placeholder="please write comments here..."></textarea></div>
       <div class="submit">
         <button (click)="submitDetails()">Submit</button>

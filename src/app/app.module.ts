@@ -25,11 +25,14 @@ import { cityReducer } from './store/reducers/city.reducer';
 import { hostelReducer } from './store/reducers/hostel.reducer';
 import { commonVariableReducer } from './store/reducers/common_variable.reducer';
 import { userReducer } from './store/reducers/user-details.reducer';
+import { commentReducer } from './store/reducers/comment.reducer';
 
 /**custom service */
 import { CommonLogicService } from './service/common-logic.service';
 import { GetUrlService } from './service/get-url.service';
 import { UserService } from './service/user.service';
+import { CommentService } from './service/comment.service';
+import { GuardService } from './guard/guard.service';
 
 /** custom component import  */
 
@@ -55,7 +58,8 @@ let reducer = {
   cityReducer: cityReducer,
   hostelReducer: hostelReducer,
   commonVariableReducer: commonVariableReducer,
-  userDetailsReducer: userReducer
+  userDetailsReducer: userReducer,
+  commentReducerObj:commentReducer
 }
 
 // Configs 
@@ -111,7 +115,9 @@ export function getAuthServiceConfigs() {
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs
     },
-    GetUrlService
+    GetUrlService,
+    CommentService,
+    GuardService
   ],
   bootstrap: [AppComponent],
   entryComponents: [ModalComponent]

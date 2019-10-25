@@ -1,0 +1,21 @@
+<div class="user-feedback-container">
+  <div *ngFor="let list of commentArr" class="each-comment">
+    <span class="angle-up" *ngIf="list.showComment" (click)="list.showComment = !list.showComment"></span>
+    <span class="angle-down" *ngIf="!list.showComment" (click)="list.showComment = !list.showComment"></span>
+    <span class="name">{{list.name}}</span>
+    <div class="comment-wrapper" *ngIf="list.showComment">
+      <div class="each-item">
+        <div class="title">Email:</div>
+        <div class="value">{{list.email}}</div>
+      </div>
+      <div class="each-item">
+        <div class="title">Mobile Number:</div>
+        <div class="value">{{list.telephone}}</div>
+      </div>
+      <div class="each-item">
+        <div class="title">comment:</div>
+        <div class="value">{{list.comment}}</div>
+      </div>
+    </div>
+  </div>
+</div>

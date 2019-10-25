@@ -6,32 +6,36 @@
         <div class="header">
           <div class="label">{{list.label}}</div>
           <div class="pg-for item-container">
-            <span class="item-label">PG For :&nbsp; </span>
+            <span class="item-label">PG For :&nbsp;</span>
             <span>{{list.pg_for}}</span>
           </div>
-          <div class="item-container">
+          <!-- <div class="item-container">
             <span class="item-label">Rating :&nbsp; </span>
             <span *ngFor="let val of counter(list.rating)">
               <img src="assets/images/iconfinder_star.svg">
           </span>
-          </div>
+          </div> -->
         </div>
         <div class="location item-container">
           <span class="location_label item-label"> Location :&nbsp; </span>
-          <span> {{list.location}}</span>
+            <span> {{list.lane}}</span>,&nbsp;
+            <span> {{list.district}}</span>,&nbsp;
+            <span> {{list.city}}</span>,&nbsp;
+            <span> {{list.state}}</span>,&nbsp;
+            <span>{{list.pincode}}</span>.
         </div>
         <div class="owner-contact-number item-container">
           <span class="item-label"> Contact Number :&nbsp; </span>
-          <span> {{list.owner_contact_num}}</span>
+          <span> {{list.contact_num}}</span>
         </div>
       </div>
       <div class="booking">
         <button (click)="redirectToBookPage(list)">Get More Details</button>
       </div>
-      <div class="favourite">
+      <!-- <div class="favourite">
         <div class="fav-icon" (click)="makeFav(list)"><img src="assets/images/iconfinder_love_no_color.svg" class="no-color-icon-size" *ngIf="!list.favFlag"></div>
         <div class="fav-icon" (click)="makeFav(list)"><img src="assets/images/iconfinder_love_red.svg" class="color-icon-size" *ngIf="list.favFlag"></div>
-      </div>
+      </div> -->
     </div>
   </ng-container>
 </div>

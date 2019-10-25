@@ -14,7 +14,13 @@ export interface Hostel{
     favFlag?:boolean;
     pg_for:string;
     food_available?:boolean;
-    contact_number?:string;
+    contact_number:string;
+    state:string,
+    city:string,
+    district:string,
+    lane:string,
+    pincode:string
+
 }
 export interface HostelInt{
     hostelArr:Hostel[],

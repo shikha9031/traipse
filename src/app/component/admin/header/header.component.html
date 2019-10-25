@@ -2,7 +2,8 @@
 <div class="city-name-collection-wrapper" id="adminHeader" (scroll)="onScrollFunCall()">
   <div class="header-list">
     <div class="list" (click)="onHomeClick()">Home</div>
-    <div class="list">Register Your Hostel</div> 
+    <div class="list" (click)="userFeedback()" *ngIf="email === 'shikhamymail101@gmail.com'">User Feedback</div>
+    <div class="list" (click)="navigateAddHostelForm()">Register Your Hostel</div> 
   </div>
 </div>
 

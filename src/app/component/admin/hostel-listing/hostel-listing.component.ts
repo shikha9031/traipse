@@ -33,7 +33,13 @@ export class HostelListingComponent implements OnInit {
       rating: '',
       price: this.sharingType,
       contact_number: '',
-      img: []
+      img: [],
+      city:'',
+      district:'',
+      favFlag:false,
+      lane:'',
+      pincode:'',
+      state:''
     }
     this.hostelListServiceObj.fetchHostelData().subscribe(res => {
     },

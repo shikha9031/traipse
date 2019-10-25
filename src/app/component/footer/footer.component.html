@@ -1,21 +1,23 @@
 <div class="footer-container">
   <div class="form-wrapper">
     <div class="contact-us-form">
+    <form [formGroup]="commentObj" (ngSubmit)="submitFeedBack(commentObj)">
       <div class="name">
-        <input type="text" name="name" id="name" placeholder="Name" autocomplete="off">
+        <input type="text" name="name" formControlName="name" id="name" placeholder="Name" autocomplete="off">
       </div>
       <div class="email" >
-          <input type="email" name="email" id="email" placeholder="Email" autocomplete="off">          
+          <input type="email" name="email" formControlName="email" id="email" placeholder="Email" autocomplete="off">          
       </div>
       <div class="telephone">
-          <input type="text" name="telephone" id="telephone" placeholder="Telephone" autocomplete="off">          
+          <input type="text" name="telephone" id="telephone" formControlName="telephone" placeholder="Telephone" autocomplete="off">          
       </div>
       <div class="comment" >
-          <textarea type="text" name="comment" id="comment" placeholder="Comment" autocomplete="off"></textarea>                    
+          <textarea type="text" name="comment" id="comment" formControlName="comment"  placeholder="Comment" autocomplete="off"></textarea>                    
       </div>
-      <div class="submit-button" name="submit" id="submit">
-        <button name="submit" id="submit">Submit</button>
+      <div class="submit-button">
+        <button name="submit"  [disabled]="!commentObj.valid" [class.disable-btn]="!commentObj.valid" [class.enable-btn]="commentObj.valid" id="submit">Submit</button>
       </div>
+    </form>
     </div>
   </div>
   <div class="contact-us">

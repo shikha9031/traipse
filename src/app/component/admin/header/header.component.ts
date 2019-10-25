@@ -8,9 +8,14 @@ import { Router } from '@angular/router'
 })
 export class HeaderComponent implements OnInit {
 
+  email:string;
+
   constructor(private router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+      this.email = sessionStorage.getItem('email');
+   }
+
   /** navigate to home on clicking home */
 
   onHomeClick() {
@@ -18,11 +23,16 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
+  userFeedback() {
+    this.router.navigate(['/dashboard/admin/userFeedback']);
+  }
+  navigateAddHostelForm() {
+    this.router.navigate(['/dashboard/admin/hostelAddForm']);
+  }
+  
   @HostListener('window:scroll', ['$event'])
   onScrollFunCall() {
-
     /*** sticky headers code*/
-    
     var header = document.getElementById("adminHeader");
     var sticky = header.offsetTop;
     if (window.pageYOffset > sticky) {

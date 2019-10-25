@@ -37,10 +37,14 @@ export class UserService {
 
 
   forgotPassword(loginUserDetails): Observable<any> {
-    console.log(loginUserDetails);
     return this.http.post<any>(baseUrl + "sendemail", loginUserDetails, httpOptions).pipe(catchError(this.handleError));
   }
 
+  /** POST: update password */
+
+  updatePassword(updatePasswordObj): Observable<any>{
+    return this.http.post<any>(baseUrl + "update-password", updatePasswordObj, httpOptions).pipe(catchError(this.handleError));    
+  }
   /** Error Handling code */
 
   private handleError(error: HttpErrorResponse) {
