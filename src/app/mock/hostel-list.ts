@@ -13,6 +13,7 @@ export const hostelMockList = {'result':[
         'pg_for':'Girls PG',
         'contact_num':"123456787",
         'food_available':"No",
+        'desc':'this pg is the highly rated pg in google map'
     },
     {
         'img':['assets/images/hostel2.png','assets/images/hostel2.png','assets/images/hostel2.png','assets/images/hostel2.png',],
@@ -27,6 +28,7 @@ export const hostelMockList = {'result':[
         'pg_for':'Girls PG',
         'contact_num':"123456787",
         'food_available':"No",
+        'desc':'this pg is the highly rated pg in google map'
     },
      {
         'img':['assets/images/hostel3.png','assets/images/hostel3.png','assets/images/hostel3.png','assets/images/hostel3.png'],
@@ -41,6 +43,7 @@ export const hostelMockList = {'result':[
         'pg_for':'Girls PG',
         'contact_num':"123456787",
         'food_available':"No",  
+        'desc':'this pg is the highly rated pg in google map'
     },
     {
         'img':['assets/images/hostel4.png','assets/images/hostel4.png','assets/images/hostel4.png','assets/images/hostel4.png'],
@@ -55,6 +58,7 @@ export const hostelMockList = {'result':[
         'pg_for':'Girls PG',
         'contact_num':"123456787",
         'food_available':"No", 
+        'desc':'this pg is the highly rated pg in google map'
     },
     {
         'img':['assets/images/hostel5.png','assets/images/hostel5.png','assets/images/hostel5.png','assets/images/hostel5.png'],
@@ -69,6 +73,7 @@ export const hostelMockList = {'result':[
         'pg_for':'Girls PG',
         'contact_num':"123456787",
         'food_available':"No",
+        'desc':'this pg is the highly rated pg in google map'
     },
     {
         'img':['assets/images/hostel6.png','assets/images/hostel6.png','assets/images/hostel6.png','assets/images/hostel6.png'],
@@ -82,6 +87,7 @@ export const hostelMockList = {'result':[
         'pincode':'123456',
         'pg_for':'Girls PG',
         'contact_num':"123456787",
-        'food_available':"No",  
+        'food_available':"No", 
+        'desc':'this pg is the highly rated pg in google map' 
     }
 ]}

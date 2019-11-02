@@ -12,7 +12,7 @@
         font-size: 25px;             
     }
 
-    form{
+    .hostel-add-form{
         width: 48%;
         margin: 0 auto;
         padding: 20px 30px;
@@ -22,6 +22,7 @@
         font-weight: 600;
         color: #3c4951;
       }
+      
         .fields{
             margin-bottom: 10px;   
             background: white;             
@@ -32,8 +33,18 @@
                 box-sizing: border-box;
                 border: 2px solid #105b79;
             }
+            textarea{
+                width: 100%;                
+            }
+            .pin-code{
+                padding: 5px;
+            }
         }
-       
+        .address-wrapper{
+            border: 2px solid #0f258e;
+            padding: 10px;
+            margin-bottom: 10px;
+          }
         .types-of-sharing{
             border: 2px solid #0f258e;
             padding: 10px;
@@ -60,9 +71,18 @@
             button{
                 padding: 10px 20px;
                 border: none;
+                cursor: pointer;
+            }
+            .disable-btn{
+                color: $Scorpion;
+                background-color: $Silver_Chalice;
+            }
+            .enable-btn{
                 color: $white;
                 background-color: $sky_Blue;
-                cursor: pointer;
+            }
+            .remove-btn{
+                margin-left: 10px;
             }
         }
     }

@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse, } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
+import { Hostel } from '../../../interface/hostel_list';
 
 const baseUrl = environment.baseUrl;
 
@@ -26,12 +27,25 @@ export class HostelListService {
     return this.http.get(baseUrl + 'fetchData').pipe(catchError(this.handleError));
   }
 
-  /** POST: add Data to the database */
+  /** POST: Hostel Data to the database */
 
-  addHostel(hero: any): Observable<any> {
-    return this.http.post<any>(baseUrl, hero, httpOptions).pipe(catchError(this.handleError));
+  addHostel(hostelData: Hostel): Observable<any> {
+    return this.http.post<any>(baseUrl+'insertHostelData', hostelData, httpOptions).pipe(catchError(this.handleError));
   }
 
+/** Post: passing id of the hostel
+ *  Delete Data of hostel 
+ * */
+
+  deleteHostel(id: string): Observable<any> {
+    let dataToBeSend = {'id':id}
+    return this.http.post<any>(baseUrl+'delete', JSON.stringify(dataToBeSend), httpOptions).pipe(catchError(this.handleError));
+  }
+  
+  updateHostel(hostelData: Hostel): Observable<any> {
+    return this.http.post<any>(baseUrl+'update', hostelData, httpOptions).pipe(catchError(this.handleError));
+  }
+  
   uploadImages(file:File){
     const formData = new FormData();
     formData.append('file', file);

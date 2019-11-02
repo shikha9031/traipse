@@ -11,6 +11,7 @@
     }
    
     .item{
+        border-left: 3px solid #64c4ed;
         border-top: 3px solid $sky_Blue;
         box-shadow: 3px 2px 2px $sky_Blue;
         margin-bottom: 10px;
@@ -21,11 +22,14 @@
             vertical-align: top;
             padding: 16px 20px 10px 20px;
             width: 62%;
+            @media(max-width:960px){
+                width: 40%;
+            }
             .header
             {
                 display: inline-block;
                 .label{
-                    font-size: 30px;
+                    font-size: 20px;
                     font-weight: 600;
                     color: $Limed_Spruce;
                     font-family: $fontFamily;
@@ -40,7 +44,6 @@
                     }
                 }
                 .pg-for{
-                    @extend .font-style;
                     margin-bottom: 10px;
                 }
             }
@@ -48,6 +51,7 @@
                 font-family: $fontFamily;
                 color: $Limed_Spruce;  
                 margin-bottom: 10px;
+                font-size: 14px;
                 .item-label{
                     font-weight: 600;                     
                 }             

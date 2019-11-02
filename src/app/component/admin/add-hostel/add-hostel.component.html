@@ -1,0 +1,105 @@
+<div class="hostel-details-form-container">
+  <div class="label">Hostel Details</div>
+  <form class="hostel-add-form" #hostelAddForm="ngForm" (ngSubmit)="submitHostelDetails(hostelObj)">
+    <div>
+      <div class="form-label"> <label>Title</label></div>
+      <div class="fields">
+        <input type="text" required #title="ngModel" autocomplete="off" placeholder="Enter Title" name="title" class="input-box" [(ngModel)]="hostelObj.label">
+      </div>
+    </div>
+    <div class="types-of-sharing">
+      <div class="form-label"><label>Upload Mutliple Images</label></div>
+      <div class="fields">
+        <input #myInput type="file" placeholder="Upload Mutliple Images"  name="img" (change)="uploadSingleImg($event)" class="input-box"
+          multiple>
+      </div>
+      <div class="img-list" *ngFor="let list of hostelObj.img">
+        <img [src]=list.url width="300px" height="200px" *ngIf="list.url">
+      </div>
+      <div class="fields submit"><button type="button" class="enable-btn" (click)="uploadImages()">upload</button></div>
+      <div class="img-loader" *ngIf="loaderImgFlag">
+        <div class="loader"></div>
+      </div>
+    </div>
+    <div>
+      <div class="form-label"><label>PG For</label></div>
+      <div class="fields">
+        <select class="input-box" placeholder="Choose State"  required #ratingSelect="ngModel"  [(ngModel)]="hostelObj.pg_for" name="ratingSelect">
+            <option value="Girls">Girls</option>
+            <option value="Boys">Boys</option>
+            <option value="Others">Others</option>
+        </select>
+      </div>
+    </div>
+    <div>
+      <div class="form-label"><label>Food Available</label></div>
+      <div class="fields">
+        <div class="input-box">
+          <input type="radio" name="foodAvailable"  required #foodAvailable="ngModel" value="Yes" [(ngModel)]="hostelObj.food_available"> Yes
+          <input type="radio" name="foodAvailable" required #foodAvailable="ngModel" value="No" [(ngModel)]="hostelObj.food_available">No
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="form-label"><label>Sharing</label></div>
+      <div class="types-of-sharing">
+        <div class="sharing-container" *ngFor="let list of hostelObj.sharing">
+          <div class="fields">
+            <input type="text" placeholder="sharing" autocomplete="off" required #sharing="ngModel" name="sharing" class="input-box" [(ngModel)]="list.sharing">
+          </div>
+          <div class="fields">
+            <input type="text" placeholder="price" autocomplete="off" required #price="ngModel" name="price" class="input-box" [(ngModel)]="list.price">
+          </div>
+          <div class="fields">
+            <input type="text" placeholder="Available Beds" autocomplete="off" required #available="ngModel" name="available" class="input-box" [(ngModel)]="list.available">
+          </div>
+          <div class="fields">
+            <input type="text" placeholder="Amenities" autocomplete="off" required #amenities="ngModel" name="amenities" class="input-box" [(ngModel)]="list.amenities">
+          </div>
+        </div>
+        <div class="fields submit">
+          <button (click)="addMoreSharing()" type="button" class="enable-btn">Add More</button>
+          <button (click)="removeOne()" type="button" class="enable-btn remove-btn">Remove</button>          
+        </div>
+      </div>
+    </div>
+    <div class="form-label"><label>Address</label></div>    
+    <div class="address-wrapper">
+      <div class="form-label"><label>State</label></div>
+      <div class="fields">
+        <select class="input-box" name="stateVal" required #stateVal="ngModel" [(ngModel)]="hostelObj.state">
+          <option *ngFor = "let list of stateList; let i = index" [ngValue]="list.name" name="state">{{list.name}}</option>
+        </select>
+      </div>
+      <div class="form-label"><label>City</label></div>
+      <div class="fields" >
+        <select class="input-box" name="cityVal"  [(ngModel)]="hostelObj.city" required #cityVal="ngModel">
+          <option *ngFor = "let list of [0,1,2]; let i = index" [ngValue]="list" name="city">{{list}}</option>
+        </select>
+      </div>
+      <div class="form-label"><label>Lane</label></div>
+      <div class="fields">
+        <textarea rows="3" cols="3" name="lane"  [(ngModel)]="hostelObj.lane" ></textarea>
+      </div>
+      <div class="form-label"><label>Pin Code</label></div>
+      <div>
+        <input type="text" autocomplete="off" required #pinCode="ngModel" class="pin-code" name="pinCode" [(ngModel)]="hostelObj.pincode">
+      </div>
+    </div>
+    <div>
+      <div class="form-label"><label>Contact Number</label></div>
+      <div class="fields">
+        <input type="text" autocomplete="off" required #contactNumber="ngModel"  [(ngModel)]="hostelObj.contact_number" placeholder="Owner Contact Number" name="contactNumber" class="input-box">
+      </div>
+    </div>
+    <div>
+      <div class="form-label"><label>Description</label></div>
+      <div class="fields">
+        <textarea type="text" autocomplete="off" #desc="ngModel" rows="3" cols="3"  [(ngModel)]="hostelObj.desc" placeholder="Please Give more details about your hostel" name="desc" class="input-box"></textarea>
+      </div>
+    </div>
+    <div class="fields submit">
+      <button type="submit"  [disabled]="hostelAddForm.invalid" [class.disable-btn]="hostelAddForm.invalid" [class.enable-btn]="!hostelAddForm.invalid">Submit</button>
+    </div>
+  </form>
+</div>  

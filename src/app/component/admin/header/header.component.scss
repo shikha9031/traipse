@@ -14,13 +14,16 @@
     .list{
         display: inline-block;
         padding:  0 10px;
-        border-right: 1px solid;
+        border-right: 1px solid white;
         color: white;
         cursor: pointer;
         &:last-of-type{
             padding-right: 0px;
             border: none;
         }
+    }
+    .active-tab{
+        color: darkslategray;
     }
     /** make header sticky **/
     

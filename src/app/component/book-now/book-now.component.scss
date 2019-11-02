@@ -6,10 +6,25 @@
     width: 97%;
     .img-container{
         width: 47%;
-        display: inline-block;        
+        display: inline-block;
+        @media(max-width:1144px){
+            width: 54%;
+        }      
         .small-img, .big-img{
             display: inline-block;
             vertical-align: top;
+        }
+        .big-img{
+            @media(max-width:1144px){
+                width: 60%;
+            }
+            @media(max-width:965px) {
+                img{
+                    width: 250px !important;
+                    height: 280px !important;
+                }
+            }
+            
         }
         .small-img{
             padding-right: 20px;
@@ -47,6 +62,10 @@
         display: inline-block;
         vertical-align: top;
         width: 53%; 
+        font-size: 14px;
+        @media(max-width:1144px){
+            width: 46%;
+        }
         .desc{
             display: inline-block;
             vertical-align: top;
@@ -55,7 +74,7 @@
             {
                 display: inline-block;
                 .label{
-                    font-size: 30px;
+                    font-size: 20px;
                     font-weight: 600;
                     color: $Limed_Spruce;
                     font-family: $fontFamily;
@@ -83,6 +102,8 @@
                     font-size: 20px;
                     text-align: center;
                     margin-bottom: 10px;
+                    color: #3c4951;
+                    font-weight: 600;
                 }
                 .sharing-data-table{
                     width: 100%;

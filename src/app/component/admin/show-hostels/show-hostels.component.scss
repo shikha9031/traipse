@@ -1,0 +1,124 @@
+@import "~src/assets/stylesheet/fontStyle";
+@import "~src/assets/stylesheet/color";
+
+.hostel-list-container{
+    margin: 0 auto;
+    width: 80%;
+    .img-container{
+        display: inline-block;
+        .img-size{
+            width: 250px;
+            height: 200px;
+        }
+    }  
+    .item{
+        border-top: 3px solid $sky_Blue;
+        box-shadow: 3px 2px 2px $sky_Blue;
+        margin-bottom: 10px;
+        padding: 14px;
+        width: 100%;
+        position: relative;
+        border-left: 3px solid #64c4ed;
+        .desc{
+            display: inline-block;
+            vertical-align: top;
+            padding: 0 20px;
+            width: 40%;
+            @media(max-width:800px){
+                width: 32%;
+            }
+            .header
+            {
+                display: inline-block;
+                .label{
+                    font-size: 20px;
+                    font-weight: 600;
+                    color: $Limed_Spruce;
+                    font-family: $fontFamily;
+                    margin-bottom: 10px;
+                }
+                .review{
+                    color: $Limed_Spruce;
+                    font-family: $fontFamily;
+                    margin-bottom: 10px;
+                    a{
+                        text-decoration: none;                    
+                    }
+                }
+                .pg-for{
+                    margin-bottom: 10px;
+                }
+            }
+            .item-container{
+                font-family: $fontFamily;
+                color: $Limed_Spruce;  
+                margin-bottom: 10px;
+                font-size: 14px;
+                .item-label{
+                    font-weight: 600;                     
+                }             
+            }
+            .button-wrapper{
+                display: inline-block;
+                vertical-align: top;
+                .btn-style{
+                    color: #ffffff;
+                    padding: 6px 15px;
+                    background-color: #64c4ed;
+                    border: none;
+                    font-weight: 500;
+                    font-size: 15px;
+                    cursor: pointer;
+                    border-radius: 2px;
+                    margin-right: 5px;
+                }
+            }
+        }
+        
+        .sharing{
+            font-family: $fontFamily;
+            margin-bottom: 15px;
+            display: inline-block;
+            vertical-align: top;
+            font-size: 14px;            
+            @media(max-width:1300px){
+                display: block;
+                margin: 0 auto;
+                width: 60%;
+                margin-top: 15px;                
+            }
+            .label{
+                font-size: 20px;
+                text-align: center;
+                margin-bottom: 10px;
+                color: #3c4951;
+                font-family: sans-serif;
+            }
+            .sharing-data-table{
+                width: 100%;
+                .table-header{
+                    background-color: $Cloud_Burst;
+                    color: $white;
+                    border: 1px solid $Cloud_Burst;
+                }
+                tr{
+                    text-align: center;
+                    th{
+                        padding: 5px;
+                    }
+                    .even{
+                        background-color: $gallery;
+                        border: 1px solid $gallery;
+                        padding: 5px 15px;
+                    }
+                    .odd{
+                        background-color: $white;
+                        border: 1px solid $white;
+                        padding: 5px 15px;
+                    }
+                }
+            }
+        }      
+    }
+  
+}

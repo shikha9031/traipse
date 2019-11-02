@@ -2,7 +2,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { AdminComponent } from './admin.component';
 import { UserFeedbackComponent } from './user-feedback/user-feedback.component';
-import { HostelListingComponent } from './hostel-listing/hostel-listing.component';
+import { AddHostelComponent } from './add-hostel/add-hostel.component';
+import { ShowHostelsComponent } from './show-hostels/show-hostels.component';
 
 const router: Routes = [
     { path: '', redirectTo: 'admin' },
@@ -10,8 +11,9 @@ const router: Routes = [
         path: 'admin', component: AdminComponent, children:
         [
             { path: '', redirectTo: 'hostelAddForm' },
-            { path: 'hostelAddForm', component: HostelListingComponent },
-            { path: 'userFeedback', component: UserFeedbackComponent }
+            { path: 'hostelAddForm', component: AddHostelComponent },
+            { path: 'userFeedback', component: UserFeedbackComponent },
+            { path: 'show-hostels', component:ShowHostelsComponent }
         ]
     },
 ];

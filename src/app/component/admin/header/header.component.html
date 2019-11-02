@@ -2,8 +2,9 @@
 <div class="city-name-collection-wrapper" id="adminHeader" (scroll)="onScrollFunCall()">
   <div class="header-list">
     <div class="list" (click)="onHomeClick()">Home</div>
-    <div class="list" (click)="userFeedback()" *ngIf="email === 'shikhamymail101@gmail.com'">User Feedback</div>
-    <div class="list" (click)="navigateAddHostelForm()">Register Your Hostel</div> 
+    <div class="list" (click)="userFeedback()" [class.active-tab]="tabActive.userFeedback" *ngIf="email === 'shikhamymail101@gmail.com'">User Feedback</div>
+    <div class="list" (click)="seeListingHostels()" [class.active-tab]="tabActive.showHostels">See Your Hostels List</div>
+    <div class="list" (click)="navigateAddHostelForm()" [class.active-tab]="tabActive.hostelAdd">Register Your Hostel</div> 
   </div>
 </div>
 

@@ -4,7 +4,8 @@ import * as commonVariableRef from '../actions/common_variable.action';
 
 export var initialState: CommonInterface = {
   favHostelList: false,
-  isLoggedIn: false
+  isLoggedIn: false,
+  isEditClicked: false
 }
 if(sessionStorage.getItem('name')){initialState.isLoggedIn = true;}
 
@@ -17,6 +18,9 @@ export function commonVariableReducer(state: CommonInterface = initialState, act
     case commonVariableRef.IS_USER_LOGGED_IN:
       state.isLoggedIn = action.payload; 
       return {...state};
+    case commonVariableRef.IS_EDIT_CLICKED:
+      state.isEditClicked = action.payload;
+      return {...state}
     default:
       return {...state};
   }

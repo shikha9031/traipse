@@ -8,12 +8,15 @@ import { CommonInterface } from '../interface/common_interface';
 })
 export class GuardService implements CanActivate {
 
+  isLoggedIn:boolean;
+
   constructor(private router:Router, private _store:Store<any>) { }
-  canActivate(){
+  canActivate():boolean{
     this._store.select('commonVariableReducer').subscribe((res:CommonInterface) => {
-      if(res.isLoggedIn) return true;
-      else this.router.navigate(['/home']);
-        return false;
+      this.isLoggedIn = res.isLoggedIn;
     })
+    if(this.isLoggedIn) return true;
+    else this.router.navigate(['/home']);
+    return false;
   }
 }

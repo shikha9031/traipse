@@ -10,7 +10,8 @@ const router:Routes=[
     { path:'home', component: HomeComponent, pathMatch:'full' },
     { path:'favourite', component: FavouritesComponent, pathMatch:'full' },
     { path:'bookNow', component:BookNowComponent,pathMatch:'full' },
-    { path :'dashboard', loadChildren:'./component/admin/admin.module#AdminModule', canActivate:[GuardService] }
+    { path :'dashboard', loadChildren:'./component/admin/admin.module#AdminModule', canActivate:[GuardService] },
+    { path:'**', redirectTo:'home', pathMatch:'full' }
 ];
 
 @NgModule({

@@ -31,8 +31,8 @@
                     font-weight: 600;
                     cursor: pointer;
                     &.disable-btn{
-                        color: #615f5f;
-                        background-color: #adadad;
+                        color: $Scorpion;
+                        background-color: $Silver_Chalice;
                     }
                     &.enable-btn{
                         background-color: $sky_Blue;
