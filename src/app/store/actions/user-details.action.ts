@@ -1,12 +1,11 @@
-import { Action } from '@ngrx/store';
-import { UserDetails } from '../../interface/user';
+// import { Action } from '@ngrx/store';
+// import { UserDetails } from '../../interface/user';
 
-export const USER_DATA = 'user_data'
+// export const USER_DATA = 'user-data';
 
+// export class UserAction implements Action {
+//   readonly type = USER_DATA;
+//   constructor(public payload: UserDetails[]) { }
+// }
 
-export class UserAction implements Action {
-    readonly type = USER_DATA;
-    constructor(public payload: UserDetails[]) {}
-  }
-
-  export type actions = UserAction;
+// export type actions = UserAction;

@@ -65,16 +65,16 @@
     </div>
     <div class="form-label"><label>Address</label></div>    
     <div class="address-wrapper">
-      <div class="form-label"><label>State</label></div>
-      <div class="fields">
-        <select class="input-box" name="stateVal" required #stateVal="ngModel" [(ngModel)]="hostelObj.state">
-          <option *ngFor = "let list of stateList; let i = index" [ngValue]="list.name" name="state">{{list.name}}</option>
-        </select>
-      </div>
       <div class="form-label"><label>City</label></div>
       <div class="fields" >
         <select class="input-box" name="cityVal"  [(ngModel)]="hostelObj.city" required #cityVal="ngModel">
-          <option *ngFor = "let list of [0,1,2]; let i = index" [ngValue]="list" name="city">{{list}}</option>
+          <option *ngFor = "let list of [0]; let i = index" [ngValue]="'Kolkata'" name="city">Kolkata</option>
+        </select>
+      </div>
+       <div class="form-label"><label>Locality</label></div>
+      <div class="fields">
+        <select class="input-box" name="locality" required #locality="ngModel" [(ngModel)]="hostelObj.locality">
+          <option *ngFor = "let list of stateList; let i = index" [ngValue]="list.name" name="localityList">{{list.name}}</option>
         </select>
       </div>
       <div class="form-label"><label>Lane</label></div>

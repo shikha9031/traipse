@@ -16,8 +16,11 @@ export class UserFeedbackComponent implements OnInit {
 
   ngOnInit() {
     this.commentService.getComment().subscribe(res=>{
-        this.commentArr = res;
-        this.assignInitialVal();
+        if(res.message === 'success'){
+            this.commentArr = res.data;
+            this.assignInitialVal();
+        }
+       
     })
     this.store.select('commentReducerObj').subscribe(res=>{
         this.commentArr.push(res);   

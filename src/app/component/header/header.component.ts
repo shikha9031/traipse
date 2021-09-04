@@ -6,6 +6,8 @@ import { UserDetails } from '../../interface/user';
 import { Store } from '@ngrx/store';
 import { CommonInterface } from '../../interface/common_interface';
 import * as commonVariableRef from '../../store/actions/common_variable.action';
+import { UserService } from '../../service/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 declare const gapi: any;
 
@@ -21,13 +23,19 @@ export class HeaderComponent implements OnInit {
   openProfileDropDown:boolean = false;
   userInfo:UserDetails = { email:'', name:'', number:'',password:'',typeOfUser:'' };
 
-  constructor(public dialog: MatDialog, private router:Router, private _store:Store<any>) { }
+  constructor(
+     public dialog: MatDialog,
+     private router:Router,
+     private _store:Store<any>,
+     private _userService:UserService,
+     private toastr: ToastrService
+    ) { }
 
   ngOnInit() {
   
     this._store.select('commonVariableReducer').subscribe((res:CommonInterface) => {
       this.isUserLoggedIn = res.isLoggedIn; 
-      if(this.isUserLoggedIn)this.userInfo.name = sessionStorage.getItem('name');
+      if(this.isUserLoggedIn)this.userInfo.name = localStorage.getItem('name');
     })
   }
 
@@ -69,7 +77,19 @@ export class HeaderComponent implements OnInit {
   }
   /** sign out user */
   signOutUser(){
-    sessionStorage.clear();
-    this._store.dispatch(new commonVariableRef.userLoggedInAction(false));    
+    if(localStorage.getItem('typeOfUser') == 'owner'){
+      this._userService.signOutUser(localStorage.getItem('refreshToken')).subscribe(res=>{
+        if(res.message == 'success'){
+          this.toastr.success("Successfully Logout");                  
+        }else{
+          this.toastr.error("Something went wrong!!! Please try again");        
+        }
+      }, (error)=>{
+        this.toastr.error("Something went wrong!!! Please try again");                
+      })
+    }
+    localStorage.clear();
+    this._store.dispatch(new commonVariableRef.userLoggedInAction(false)); 
+    this.router.navigate(['/home']);
   }
 }

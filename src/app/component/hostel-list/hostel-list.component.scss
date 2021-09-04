@@ -7,11 +7,15 @@
         .img-size{
             width: 250px;
             height: 200px;
+            @media(max-width:450px){
+                width: 100px;
+                height: 100px;
+            }
         }
     }
    
     .item{
-        border-left: 3px solid #64c4ed;
+        border-left: 3px solid $purple_Blue;
         border-top: 3px solid $sky_Blue;
         box-shadow: 3px 2px 2px $sky_Blue;
         margin-bottom: 10px;
@@ -64,7 +68,7 @@
             button{
                 color: $white;
                 padding: 15px;
-                background-color: $sky_Blue;
+                background-color: $purple_Blue;
                 border: none;
                 font-weight: 500;
                 font-size: 15px;

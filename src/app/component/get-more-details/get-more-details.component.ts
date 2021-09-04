@@ -7,11 +7,11 @@ import { ModalComponent } from '../modal/modal.component';
 declare var $: any;
 
 @Component({
-  selector: 'app-book-now',
-  templateUrl: './book-now.component.html',
-  styleUrls: ['./book-now.component.scss']
+  selector: 'get-more-details',
+  templateUrl: './get-more-details.component.html',
+  styleUrls: ['./get-more-details.component.scss']
 })
-export class BookNowComponent implements OnInit {
+export class GetMoreDetailsComponent implements OnInit {
 
   /** favourite flag */
   makeFavFlag: boolean = false;
@@ -23,21 +23,29 @@ export class BookNowComponent implements OnInit {
   constructor(private _store: Store<HostelInt>, public dialog: MatDialog) { }
 
   ngOnInit() {
-
+  
     this.hostel_arr = {
       hostelArr: [],
       hostelObj: null
     };
-
-    this.hostel_arr.hostelObj = JSON.parse(sessionStorage.getItem('hostelItem'));
-    this.hostelImg = this.hostel_arr.hostelObj.img[0];
+    this._store.select('hostelReducer').subscribe((value:HostelInt)=>{
+      if(value.hostelArr.length>0)
+        this.hostel_arr.hostelArr = value.hostelArr;
+      
+      if(value.hostelObj)
+        this.hostel_arr.hostelObj = value.hostelObj;
+      
+    });
+    console.log(this.hostel_arr.hostelObj);
+    if(this.hostel_arr.hostelObj && this.hostel_arr.hostelObj.img && this.hostel_arr.hostelObj.img.url)
+      this.hostelImg = this.hostel_arr.hostelObj.img[0].url;
 
   }
 
   /** for selecting new image in the list*/
 
   getImg(param) {
-    this.hostelImg = param;
+    this.hostelImg = param.url;
   }
 
   /** make hostel favourite */

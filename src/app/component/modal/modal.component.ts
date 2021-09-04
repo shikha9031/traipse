@@ -3,11 +3,11 @@ import { MatDialogRef, MAT_DIALOG_DATA, } from '@angular/material';
 import { AuthService, FacebookLoginProvider, GoogleLoginProvider, LinkedinLoginProvider } from 'angular-6-social-login';
 import { UserDetails } from '../../interface/user';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
-import * as userRef from '../../store/actions/user-details.action';
 import { Store } from '@ngrx/store';
 import { UserService } from '../../service/user.service';
 import { ToastrService } from 'ngx-toastr';
 import * as commonVariableRef from '../../store/actions/common_variable.action';
+import { EmailValidator } from '../../service/email-validator';
 
 @Component({
   selector: 'app-modal',
@@ -28,8 +28,9 @@ export class ModalComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required),
     conFirmPass: new FormControl('', Validators.required),
-    mobileNum: new FormControl('', [Validators.required, Validators.minLength(9)]),
-    typeOfUser: new FormControl('', Validators.required)
+    enterCode: new FormControl('', [Validators.required]),
+    typeOfUser: new FormControl('', Validators.required),
+    mobileNum: new FormControl('', [Validators.required, Validators.minLength(10)])
   })
 
   userLoginObj = new FormGroup({
@@ -46,8 +47,7 @@ export class ModalComponent implements OnInit {
     password: new FormControl('', Validators.required),
     updatePassword: new FormControl('', Validators.required),
   })
-
-  registrationSuccess: string;
+  emailValidatorObj = new EmailValidator();
 
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,
@@ -55,14 +55,11 @@ export class ModalComponent implements OnInit {
     private socialAuthService: AuthService,
     private _store: Store<any>,
     private _userService: UserService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+
   ) { }
 
-  ngOnInit() {
-    this._store.select('userDetailsReducer').subscribe((res: UserDetails[]) => {
-      this.userInfoArr = res;
-    })
-  }
+  ngOnInit() {}
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -91,8 +88,13 @@ export class ModalComponent implements OnInit {
   registerDetails(userDetails?: any) {
     if (this.matchPasword(userDetails.value.password, userDetails.value.conFirmPass)) {
       this._userService.registerUserDetails(userDetails.value).subscribe(res => {
-        this.registrationSuccess = res;
-        this.toastr.success("Registration Successfully. Please Login");
+        if (res.message === "success") {
+          this.toastr.success("Registration Successfully. Please Login");
+          this.data.param = 'login';
+        }
+        else {
+          this.toastr.error(res);
+        }
         this.clearRegistrationFields();
       },
         error => this.toastr.error("Network Error!!!. Please try after some time")
@@ -109,14 +111,18 @@ export class ModalComponent implements OnInit {
 
   userLogin(userDetails: any) {
     this._userService.loginUser(userDetails.value).subscribe(res => {
-      if (res.length <= 0) this.toastr.error("Login Credential is not available");
+      if (res.message == 'Auth Successfull')
+        {
+          localStorage.setItem('typeOfUser', res.data.typeOfUser);
+          localStorage.setItem('name', res.data.name);
+          localStorage.setItem('email', res.data.email);
+          localStorage.setItem('refreshToken', res.refreshToken);
+          this._store.dispatch(new commonVariableRef.userLoggedInAction(true));
+          this._store.dispatch(new commonVariableRef.AuthorizationToken(res.token));
+          this.toastr.success("Login Successfully.");
+        } 
       else {
-        sessionStorage.setItem('name', res[0].name);
-        sessionStorage.setItem('email', res[0].email);
-        sessionStorage.setItem('typeOfUser', res[0].typeOfUser);
-        sessionStorage.setItem('mobileNum', res[0].mobileNum);
-        this._store.dispatch(new commonVariableRef.userLoggedInAction(true));
-        this.toastr.success("Login Successfully.");
+        this.toastr.error("Login Credential is not available");
       }
       this.clearLoginFields();
       this.onNoClick();
@@ -133,8 +139,9 @@ export class ModalComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required),
       conFirmPass: new FormControl('', Validators.required),
-      mobileNum: new FormControl('', [Validators.required, Validators.minLength(9)]),
-      typeOfUser: new FormControl('', Validators.required)
+      mobileNum: new FormControl('', [Validators.required, Validators.minLength(9), Validators.maxLength(9)]),
+      typeOfUser: new FormControl('', Validators.required),
+      enterCode: new FormControl('', [Validators.required]),
     })
   }
   clearLoginFields() {
@@ -153,7 +160,7 @@ export class ModalComponent implements OnInit {
 
   forgotPassword(event) {
     this._userService.forgotPassword(event.value).subscribe(res => {
-      if(res === 'Invalid Email ID') this.toastr.error(res);
+      if (res === 'Invalid Email ID') this.toastr.error(res);
       else this.toastr.success(res);
       this.clearForgotFields();
     }, error => {
@@ -165,7 +172,7 @@ export class ModalComponent implements OnInit {
 
   updatePassword(event) {
     this._userService.updatePassword(event.value).subscribe(res => {
-      if(res === 'email id not found') this.toastr.error(res);
+      if (res === 'email id not found') this.toastr.error(res);
       else this.toastr.success(res);
       this.clearForgotFields();
     }, error => {
@@ -190,4 +197,21 @@ export class ModalComponent implements OnInit {
     return true;
 
   }
+  sendVarificationEmail(userDetails) {
+    if (this.emailValidatorObj.isValidMailFormat(userDetails.value.email)) {
+      this._userService.varifyEmail(userDetails.value.email).subscribe(res => {
+        if(res.message === 'success')
+        this.toastr.success("Verification email send successfully");
+      })
+    } else {
+      this.toastr.error("Invalid Email Id.")
+    }
+  }
+  /** get Radio Button Val */
+  getRadioVal(param) {
+    this.userDetails.patchValue({
+      typeOfUser: param
+    })
+  }
+
 }

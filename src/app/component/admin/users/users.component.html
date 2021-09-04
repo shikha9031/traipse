@@ -1,0 +1,21 @@
+<div class="sharing">
+  <div class="label">Sharing</div>
+  <div>
+    <table class="sharing-data-table">
+      <tr class="table-header">
+        <th>Name</th>
+        <th>Email ID</th>
+        <th>Type Of Users</th>
+        <th>Mobile Number</th>
+        <div>Delete User</div>
+      </tr>
+      <tr *ngFor="let val of usersArray; let odd = odd ; let even = even; let i = index">
+        <td [ngClass]="{odd:odd, even:even}">{{val.name}}</td>
+        <td [ngClass]="{odd:odd, even:even}">{{val._id}}</td>
+        <td [ngClass]="{odd:odd, even:even}">{{val.typeOfUser}}</td>
+        <td [ngClass]="{odd:odd, even:even}">{{val.mobileNum}}</td>
+        <td [ngClass]="{odd:odd, even:even}"><button class="delete-btn" (click)="openDialog('delete', i, val)">Delete</button></td>
+      </tr>
+    </table>
+  </div>
+</div>

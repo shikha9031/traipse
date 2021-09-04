@@ -1,13 +1,13 @@
 <header-list></header-list>
 <div class="book-now-container">
   <div class="img-container">
-    <div class="small-img">
+    <div class="small-img" *ngIf="hostel_arr.hostelObj && hostel_arr.hostelObj.img">
       <span *ngFor="let list of hostel_arr.hostelObj.img; let i = index" class="multi-img-list" (click)="getImg(list)">
-          <img src={{list}} width="100px" height="100px">
-        </span>
+          <img  src={{list.url}} width="100px" height="100px">
+      </span>
     </div>
     <div class="big-img">
-      <img src={{hostelImg}} width="400px" height="400px">
+      <img src={{hostelImg}}  width="400px" height="400px">
     </div>
     <!--uncomment it when favourite section added-->
 
@@ -34,7 +34,22 @@
           </span>
         </div> -->
       </div>
-      <div class="sharing">
+      <div class="item-container">
+        <span class="item-label"> Location :&nbsp; </span>
+        <span> {{hostel_arr.hostelObj.lane}}</span>,&nbsp;
+        <span> {{hostel_arr.hostelObj.locality}}</span>,&nbsp;
+        <span> {{hostel_arr.hostelObj.city}}</span>,&nbsp;
+        <span>{{hostel_arr.hostelObj.pincode}}</span>.
+      </div>
+      <div class="item-container">
+        <span class="item-label"> Contact Number :&nbsp; </span>
+        <span> {{hostel_arr.hostelObj.contact_number}}</span>
+      </div>
+      <div class="item-container">
+        <span class="item-label"> Food Facility :&nbsp; </span>
+        <span> {{hostel_arr.hostelObj.food_available}}</span>
+      </div>
+      <div class="sharing"  *ngIf="hostel_arr.hostelObj.sharing && hostel_arr.hostelObj.sharing.length>0">
         <div class="label">Sharing</div>
         <div>
           <table class="sharing-data-table">
@@ -52,22 +67,6 @@
             </tr>
           </table>
         </div>
-      </div>
-      <div class="item-container">
-        <span class="item-label"> Location :&nbsp; </span>
-        <span> {{hostel_arr.hostelObj.lane}}</span>,&nbsp;
-        <span> {{hostel_arr.hostelObj.district}}</span>,&nbsp;
-        <span> {{hostel_arr.hostelObj.city}}</span>,&nbsp;
-        <span> {{hostel_arr.hostelObj.state}}</span>,&nbsp;
-        <span>{{hostel_arr.hostelObj.pincode}}</span>.
-      </div>
-      <div class="item-container">
-        <span class="item-label"> Contact Number :&nbsp; </span>
-        <span> {{hostel_arr.hostelObj.contact_num}}</span>
-      </div>
-      <div class="item-container">
-        <span class="item-label"> Food Facility :&nbsp; </span>
-        <span> {{hostel_arr.hostelObj.food_available}}</span>
       </div>
       <!--uncomment this when need to add review functionality-->
 

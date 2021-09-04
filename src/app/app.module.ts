@@ -18,21 +18,21 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { RouterClass } from './app.route';
 
-
 /** custom reducer import  */
 
 import { cityReducer } from './store/reducers/city.reducer';
 import { hostelReducer } from './store/reducers/hostel.reducer';
 import { commonVariableReducer } from './store/reducers/common_variable.reducer';
-import { userReducer } from './store/reducers/user-details.reducer';
 import { commentReducer } from './store/reducers/comment.reducer';
 
 /**custom service */
 import { CommonLogicService } from './service/common-logic.service';
-import { GetUrlService } from './service/get-url.service';
+import { CommonService } from './service/common.service';
 import { UserService } from './service/user.service';
 import { CommentService } from './service/comment.service';
 import { GuardService } from './guard/guard.service';
+import { HostelService } from './shared/hostel.service';
+import { GetCityService } from './service/get-city.service';
 
 /** custom component import  */
 
@@ -46,7 +46,8 @@ import { FilterComponent } from './component/filter/filter.component';
 import { FavouritesComponent } from './component/favourites/favourites.component';
 import { HostelListComponent } from './component/hostel-list/hostel-list.component';
 import { ModalComponent } from './component/modal/modal.component';
-import { BookNowComponent } from './component/book-now/book-now.component';
+import { GetMoreDetailsComponent } from './component/get-more-details/get-more-details.component';
+import { AdminModalComponent } from './component/admin/admin-modal/admin-modal.component';
 
 /** pipe import statement */
 
@@ -58,7 +59,6 @@ let reducer = {
   cityReducer: cityReducer,
   hostelReducer: hostelReducer,
   commonVariableReducer: commonVariableReducer,
-  userDetailsReducer: userReducer,
   commentReducerObj:commentReducer
 }
 
@@ -74,6 +74,8 @@ export function getAuthServiceConfigs() {
   )
   return config;
 }
+/// config for firebase
+
 
 @NgModule({
   declarations: [
@@ -87,8 +89,9 @@ export function getAuthServiceConfigs() {
     HostelListComponent,
     FavouritesComponent,
     ModalComponent,
-    BookNowComponent,
+    GetMoreDetailsComponent,
     FilterPipe,
+    AdminModalComponent    
   ],
   imports: [
     ClickOutsideModule,
@@ -103,10 +106,11 @@ export function getAuthServiceConfigs() {
     MatNativeDateModule,
     MatDatepickerModule,
     BrowserAnimationsModule,  
-    ToastrModule.forRoot(),  
     MatDialogModule,
     MatInputModule,
     ReactiveFormsModule,
+    /** toaster Module  */
+    ToastrModule.forRoot(),      
     HttpClientModule
   ],
   providers: [
@@ -115,11 +119,13 @@ export function getAuthServiceConfigs() {
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs
     },
-    GetUrlService,
+    CommonService,
     CommentService,
-    GuardService
+    GuardService,
+    HostelService,
+    GetCityService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ModalComponent]
+  entryComponents: [ModalComponent, AdminModalComponent]
 })
 export class AppModule { }

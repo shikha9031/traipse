@@ -6,7 +6,7 @@ export const HOSTEL_OBJ = 'hostel-obj';
 
 export class HostelAction implements Action {
     readonly type = HOSTEL_DATA;
-    constructor(public payload: HostelInt) {}
+    constructor(public payload: Hostel[]) {}
   }
   export class EditHostelAction implements Action {
     readonly type = HOSTEL_OBJ;

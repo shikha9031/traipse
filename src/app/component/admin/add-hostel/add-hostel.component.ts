@@ -6,6 +6,7 @@ import { HostelListService } from '../service/hostel-list.service';
 import { City } from '../../../mock/city';
 import { ToastrService } from 'ngx-toastr';
 import { CommonInterface } from '../../../interface/common_interface';
+declare var $:any;
 
 @Component({
   selector: 'add-hostel',
@@ -28,7 +29,7 @@ export class AddHostelComponent implements OnInit {
     city:'',
     lane:'',
     pincode:'',
-    state:'',
+    locality:'',
     desc:''
   };
   hostelArr: Hostel[];
@@ -43,10 +44,11 @@ export class AddHostelComponent implements OnInit {
   constructor(
     private _store: Store<any>,
     private hostelListServiceObj: HostelListService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit() {
+    $(document).scrollTop(0);
     this.stateList = City.results;
     this._store.select('hostelReducer').subscribe((res:HostelInt)=>{
       if(res.hostelObj){
@@ -61,14 +63,16 @@ export class AddHostelComponent implements OnInit {
   /** submit hostel details */
 
   submitHostelDetails(param:Hostel) {
-    param.email = sessionStorage.getItem('email');
+    param.email = localStorage.getItem('email');
     if(!this.commonVariableRef.isEditClicked) this.submitFun(param);
     else this.updateFun(param);
   }
   
   submitFun(param:Hostel){
     this.hostelListServiceObj.addHostel(param).subscribe(res=>{
-      this.toastr.success("Hostel Added Successfully. You can check on 'See your Hostels List Page'.")      
+      this.toastr.success("Hostel Added Successfully. You can check on 'See your Hostels List Page'.");
+      this.hostelArr.push(this.hostelObj);
+      this._store.dispatch(new hostelRef.HostelAction(this.hostelArr));
       this.clearFields();
     }, error=>{
       this.toastr.error("Something went wrong!!!. Please try after some time")
@@ -98,14 +102,16 @@ export class AddHostelComponent implements OnInit {
 
   uploadImages() {
     if(this.file){
-      this.loaderImgFlag = true;    
-      this.hostelListServiceObj.uploadImages(this.file).subscribe(res => {
-        let url = res;
-        this.hostelObj.img.push({url:url});
-        this.imgFieldRef.nativeElement.value = "";
-        this.loaderImgFlag = false;
-      });
-    }
+      var file = this.file;      
+      var reader = new FileReader();
+      let that = this;
+  
+      reader.onloadend = function () {
+        that.hostelObj.img.push({'url':reader.result}); 
+      }
+      reader.readAsDataURL(file);
+      
+     }
   }
   uploadSingleImg(event) {
       this.file = event.target.files[0];
@@ -124,7 +130,7 @@ export class AddHostelComponent implements OnInit {
       city:'',
       lane:'',
       pincode:'',
-      state:'',
+      locality:'',
       desc:''
     };
     this.imgFieldRef.nativeElement.value="";

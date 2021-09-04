@@ -11,12 +11,15 @@ export function hostelReducer(state: HostelInt = initialState, action: hostelRef
 
   switch (action.type) {
     case hostelRef.HOSTEL_DATA:
-      return { ...action.payload };
-    case hostelRef.HOSTEL_OBJ:{
-      state.hostelArr = state.hostelArr;
-      state.hostelObj = action.payload;
-    }
-      return state;
+      return { 
+        hostelArr : action.payload,
+        hostelObj : state.hostelObj
+      };
+    case hostelRef.HOSTEL_OBJ:
+      return{
+        hostelArr : state.hostelArr,
+        hostelObj : action.payload
+      }
     default:
       return { ...state };
   }

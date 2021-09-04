@@ -5,6 +5,7 @@ import { CommentService } from '../../service/comment.service';
 import { ToastrService } from 'ngx-toastr';
 import { Store } from '@ngrx/store';
 import * as commentRef from '../../store/actions/comment.action';
+import { emailValidator } from '../../service/email-validate-reactive-form';
 
 @Component({
   selector: 'app-footer',
@@ -13,12 +14,14 @@ import * as commentRef from '../../store/actions/comment.action';
 })
 export class FooterComponent implements OnInit {
 
+  
   commentObj = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
+    email: new FormControl('', [Validators.required, emailValidator]),
     name: new FormControl(''),
     telephone: new FormControl(''),
     comment: new FormControl(''),
-  })
+  });
+
 
   constructor(
     private commentService: CommentService,
@@ -34,8 +37,8 @@ export class FooterComponent implements OnInit {
    */
   submitFeedBack(feedBackObj) {
     this.commentService.postComment(feedBackObj.value).subscribe(res => {
-      if (res === "comments inserted successfully") {
-        this.toastr.success("Comments Added Successfully");
+      if (res.message === "success") {
+        this.toastr.success("Thanks for your feedback");
         this.clearFieldsForNextComment();
         this._store.dispatch(new commentRef.CommentAction(feedBackObj.value))
       }

@@ -1,5 +1,6 @@
 @import "~src/assets/stylesheet/fontStyle";
 @import "~src/assets/stylesheet/color";
+@import "~src/assets/stylesheet/radio-button";
 
 .form-wrapper{
     min-width: 300px;
@@ -99,6 +100,9 @@
                         vertical-align: top;
                     }
                 }
+                .styled-radio{
+                    @extend %custom-radio-btn;
+                }
             }
                 .fields{
                     margin-bottom: 10px;                
@@ -108,6 +112,13 @@
                         padding: 10px;
                         box-sizing: border-box;
                         border: 2px solid #105b79;
+                    }
+                    &.email-box{
+                        display: inline-block;
+                        margin-right: 10px;
+                    }
+                    .code{
+                        width: 46%;                        
                     }
                 }
         }
@@ -127,6 +138,12 @@
                 }
             }
 
+        }
+        .verify-btn{
+            display: inline-block;
+            .verify-email{
+                padding: 12px 10px;
+            }
         }
         .review{
             .input-box{

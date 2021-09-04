@@ -5,32 +5,48 @@ import { Observable, throwError } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { Hostel } from '../../../interface/hostel_list';
+import { Store } from '@ngrx/store';
+import { CommonInterface } from '../../../interface/common_interface';
 
 const baseUrl = environment.baseUrl;
+var authorizationToken = '';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-  })
-};
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class HostelListService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private _store:Store<any>) {
+    this._store.select('commonVariableReducer').subscribe((res: CommonInterface) => {
+      if (res.authorizationToken) authorizationToken = res.authorizationToken;
+    })
+   }
 
   /** GET:  fetch data  from database */
 
-  fetchHostelData() {
-    return this.http.get(baseUrl + 'fetchData').pipe(catchError(this.handleError));
+  fetchHostelData(param) {
+    let dataToBeSend = {'email': param};
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'authorization': 'Bearer '+authorizationToken    
+      })
+    };
+    return this.http.post<any>(baseUrl + 'hostel-list/filter', JSON.stringify(dataToBeSend), httpOptions).pipe(catchError(this.handleError));
   }
 
   /** POST: Hostel Data to the database */
 
   addHostel(hostelData: Hostel): Observable<any> {
-    return this.http.post<any>(baseUrl+'insertHostelData', hostelData, httpOptions).pipe(catchError(this.handleError));
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'authorization': 'Bearer '+authorizationToken    
+      })
+    };
+    return this.http.post<any>(baseUrl+'hostel-list/insertHostelData', hostelData, httpOptions).pipe(catchError(this.handleError));
   }
 
 /** Post: passing id of the hostel
@@ -38,12 +54,24 @@ export class HostelListService {
  * */
 
   deleteHostel(id: string): Observable<any> {
-    let dataToBeSend = {'id':id}
-    return this.http.post<any>(baseUrl+'delete', JSON.stringify(dataToBeSend), httpOptions).pipe(catchError(this.handleError));
+    let dataToBeSend = {'id':id};
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'authorization': 'Bearer '+authorizationToken    
+      })
+    };
+    return this.http.post<any>(baseUrl+'hostel-list/delete', JSON.stringify(dataToBeSend), httpOptions).pipe(catchError(this.handleError));
   }
   
   updateHostel(hostelData: Hostel): Observable<any> {
-    return this.http.post<any>(baseUrl+'update', hostelData, httpOptions).pipe(catchError(this.handleError));
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'authorization': 'Bearer '+authorizationToken    
+      })
+    };
+    return this.http.post<any>(baseUrl+'hostel-list/update', hostelData, httpOptions).pipe(catchError(this.handleError));
   }
   
   uploadImages(file:File){

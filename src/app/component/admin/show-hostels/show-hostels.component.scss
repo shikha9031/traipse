@@ -12,7 +12,7 @@
         }
     }  
     .item{
-        border-top: 3px solid $sky_Blue;
+        border-top: 3px solid $purple_Blue;
         box-shadow: 3px 2px 2px $sky_Blue;
         margin-bottom: 10px;
         padding: 14px;
@@ -120,5 +120,12 @@
             }
         }      
     }
-  
+    .no-data-available{
+        text-align: center;
+        margin:30px 0;
+        .text{
+            margin-top: 10px;
+            font-size: 20px;
+        }
+    }
 }

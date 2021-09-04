@@ -1,7 +1,7 @@
 <div class="hostel-list-container">
   <ng-container *ngIf="hostel_arr">
     <div *ngFor="let list of hostel_arr.hostelArr" class="item">
-      <div class="img-container"><img src={{list.img[0]}} class="img-size"></div>
+      <div class="img-container" *ngIf="list.img && list.img[0]"><img src={{list.img[0].url}} class="img-size"></div>
       <div class="desc">
         <div class="header">
           <div class="label">{{list.label}}</div>
@@ -19,10 +19,17 @@
         <div class="location item-container">
           <span class="location_label item-label"> Location :&nbsp; </span>
             <span> {{list.lane}}</span>,&nbsp;
-            <span> {{list.district}}</span>,&nbsp;
+            <span> {{list.locality}}</span>,&nbsp;
             <span> {{list.city}}</span>,&nbsp;
-            <span> {{list.state}}</span>,&nbsp;
             <span>{{list.pincode}}</span>.
+        </div>
+        <div class="owner-contact-number item-container">
+          <span class="item-label">Food Available :&nbsp; </span>
+          <span> {{list.food_available}}</span>
+        </div>
+        <div class="owner-contact-number item-container">
+          <span class="item-label">Contact us :&nbsp; </span>
+          <span> {{list.contact_number}}</span>
         </div>
         <div class="owner-contact-number item-container">
           <span class="item-label"> Description :&nbsp; </span>

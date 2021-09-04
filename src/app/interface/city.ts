@@ -1,6 +1,6 @@
 
 export interface City{
-    name:string;
+    city:string;
     locality:any;
     show?:boolean;
     showLocality?:boolean;

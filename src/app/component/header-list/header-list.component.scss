@@ -10,7 +10,7 @@
     .list{
         display: inline-block;
         padding:  0 10px;
-        border-right: 1px solid;
+        border-right: 1px solid white;
         color: white;
         cursor: pointer;
       
@@ -22,6 +22,7 @@
             position: absolute;
             padding: 10px 0;
             box-shadow: 1px 5px 8px #888888;
+            z-index: 1;
             .locality-name{
                 padding: 10px 20px;
                 cursor: pointer;
@@ -39,6 +40,9 @@
     .list:last-child{
         padding-right: 0px;
         border-right: none ;
+    }
+    .active-tab{
+        color: darkslategray;        
     }
     .header-list{
         float: right;

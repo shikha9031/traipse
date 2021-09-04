@@ -4,27 +4,41 @@ import { HttpClient, HttpErrorResponse, } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { Store } from '@ngrx/store';
+import { CommonInterface } from '../interface/common_interface';
 
 const baseUrl = environment.baseUrl;
+var authorizationToken = '';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-  })
-};
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommentService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private _store: Store<any>) {
+    this._store.select('commonVariableReducer').subscribe((res: CommonInterface) => {
+      if (res.authorizationToken) authorizationToken = res.authorizationToken;
+    })
+   }
 
   postComment(commentObj:any){
-    return this.http.post<any>(baseUrl + "comment", commentObj, httpOptions).pipe(catchError(this.handleError));    
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+    return this.http.post<any>(baseUrl + "comment/postComment", commentObj, httpOptions).pipe(catchError(this.handleError));    
   }
   getComment(){
-    return this.http.get<any>(baseUrl + "fetchComment", httpOptions).pipe(catchError(this.handleError));        
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'authorization': 'Bearer '+authorizationToken
+      }),
+      
+    };
+    return this.http.get<any>(baseUrl + "comment/fetchComment", httpOptions).pipe(catchError(this.handleError));        
   }
     /** Error Handling code */
 

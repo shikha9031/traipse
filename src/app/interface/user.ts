@@ -4,4 +4,5 @@ export interface UserDetails{
     number?:string;
     name?:string;
     typeOfUser?:string;
+    authorizationToken?:string;
 }

@@ -4,7 +4,7 @@ import { Observable, Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class GetUrlService {
+export class CommonService {
 
   private getUrl = new Subject<boolean>();
 

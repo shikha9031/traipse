@@ -7,6 +7,10 @@
         display: inline-flex;
         width: 200px;
         height: 100px;
+        @media(max-width:320px){
+            width: 150px;
+            height: 75px;
+        }
         img{
             width: 100%;
             height: 100%;
@@ -16,6 +20,10 @@
         position: absolute;
         top: 42px;
         right: 45px;
+        @media(max-width:320px){
+            top: 23px;
+            right: 15px;
+        }
         span{
             border: 1px solid #383838;
             padding: 5px 10px;
@@ -24,6 +32,9 @@
             color: #383838;
             cursor: pointer;
             @extend .font-style;
+            @media(max-width:320px){
+                font-size: 14px;
+            }
             &:hover{
                 background-color: $sky_Blue;
                 color: white;
@@ -34,13 +45,17 @@
             background-color: white;
             position: absolute;
             box-shadow: 1px 5px 8px #888888;
-            z-index: 5;
+            z-index: 5;   
+            right: 0;
             .row{
                 padding: 10px 20px;
                 cursor: pointer;
                 color: $sky_Blue;
                 border-bottom: 1px solid #dad9d9;
                 width: 127px;
+                @media (max-width:450px){
+                    font-size: 13px;
+                }
                 &:hover{
                     background-color: #ebefd0;;
                 }

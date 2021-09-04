@@ -13,8 +13,8 @@ export interface Hostel{
     pg_for:string;
     food_available?:boolean;
     contact_number:string;
-    state:string,
     city:string,
+    locality:string,
     lane:string,
     pincode:string
     email:string;

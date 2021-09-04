@@ -1,5 +1,5 @@
 <div class="hostel-list-container">
-  <ng-container *ngIf="hostelArr">
+  <ng-container *ngIf="(hostelArr && hostelArr.length>0); else noHostelDataTemplate">
     <div *ngFor="let list of hostelArr; let i = index" class="item">
       <div class="img-container" *ngIf="list.img && list.img.length>0">
         <img src={{list.img[0].url}} class="img-size">
@@ -33,7 +33,7 @@
         </div>
         <div class="button-wrapper">
           <button class="btn-style" (click)="editHostelData(list)">Edit</button>
-          <button class="btn-style" style="margin-right:0" (click)="deleteHostleObj(i, list)">Delete</button>
+          <button class="btn-style" style="margin-right:0" (click)="openDialog('delete', i, list)">Delete</button>
         </div>
       </div>
         <div class="sharing">
@@ -57,4 +57,10 @@
         </div>
     </div>
   </ng-container>
+  <ng-template #noHostelDataTemplate>
+      <div class="no-data-available" *ngIf="(hostelArr && hostelArr.length == 0)">
+        <img src="./assets/images/exclamation-mark.png" width="150px" height="150px">
+        <div class="text">You haven't added any hostels</div>
+      </div>
+  </ng-template>
 </div>

@@ -7,7 +7,11 @@ import * as hostelRef from './store/actions/hostel.action';
 import { City } from './interface/city';
 import { HostelInt } from './interface/hostel_list';
 import { CommonLogicService } from './service/common-logic.service';
-import { GetUrlService } from './service/get-url.service';
+import { HostelService } from './shared/hostel.service';
+import { GetCityService } from './service/get-city.service';
+import * as commonVarRef from './store/actions/common_variable.action';
+import { Router } from "@angular/router";
+import { UserService } from './service/user.service';
 
 @Component({
   selector: 'app-root',
@@ -20,19 +24,37 @@ export class AppComponent implements OnInit {
   constructor(
     private _store: Store<any>,
     private _commonLogicService: CommonLogicService,
-    private _getUrlService: GetUrlService) {
+    private _hostelObj:HostelService,
+    private _getCityService:GetCityService,
+    private router: Router,
+    private _userService:UserService
+  ) {
   }
   ngOnInit() {
+    this.router.navigate([''])    
     this.hostelList = {
       hostelArr: [],
       hostelObj: null
     };
-
-    this.cityObj = mockData.results;
-    this.hostelList.hostelArr = this._commonLogicService.initialSetParamsForHostel(hostelMockList.result);
-    this._store.dispatch(new cityRef.CityAction(this._commonLogicService.initialSetParams(this.cityObj)));
-    this._store.dispatch(new hostelRef.HostelAction(this.hostelList));
-    
-    /** show hide admin header according to home or dashboard location */
+    if(localStorage.getItem('typeOfUser') === 'owner'){
+      this._userService.getAuthorizationToken(localStorage.getItem('refreshToken')).subscribe(res=>{
+        if(res.token) this._store.dispatch(new commonVarRef.AuthorizationToken(res.token));        
+      })
+    }
+    this._hostelObj.fetchHostelData().subscribe((res:any)=>{
+      if(res.data && res.data.length>0){
+        this.hostelList.hostelArr = res.data;
+        this.hostelList.hostelArr = this._commonLogicService.initialSetParamsForHostel(this.hostelList.hostelArr);
+        this._store.dispatch(new hostelRef.HostelAction(this.hostelList.hostelArr));   
+      }
+     
+    },      
+       error => console.log(error)
+  );
+    this._getCityService.getCityName().subscribe(res=>{
+      if(res.data && res.data.length>0){
+        this._store.dispatch(new cityRef.CityAction(res.data));
+      }
+    })
   }
 }

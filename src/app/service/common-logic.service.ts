@@ -17,10 +17,10 @@ export class CommonLogicService {
     return [...payload];
   }
   initialSetParamsForHostel(payload: any): Hostel[] {
-    for (let i in payload) {
+    for (let i=0; i<payload.length; i++) {
       payload[i].favFlag = false;
     }
-    return [...payload];
+     return payload;
   }
   getFavHostelList(payload:any):Hostel[]{
     let returnArray = [];
@@ -29,4 +29,5 @@ export class CommonLogicService {
     });
     return returnArray;
   }
+    
 }

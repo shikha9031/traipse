@@ -1,14 +1,14 @@
-<div class="city-name-collection-wrapper" id="myHeader" (scroll)="onScrollFunCall(event)">
+<div class="city-name-collection-wrapper" id="myHeader" (scroll)="onScrollFunCall($event)">
   <div *ngFor="let list of cityArr; let i = index" class="city-name list" (clickOutside)="onClickedOutside($event,list)">
-    <span (click)="showList(list)">{{list.name}}</span>
+    <span (click)="showList(list)">{{list.city}}</span>
     <div *ngIf="list.show" class="locality">
       <div *ngFor="let value of list.locality; let j = index" class="locality-name">{{value}}</div>
     </div>
   </div>
   <div class="header-list">
-    <div class="list" (click)="onHomeClick()">Home</div>
-    <div class="list" (click)="onContactUsClick()">Contact us</div>
+    <div class="list" (click)="onHomeClick()" [class.active-tab]="tabClick.home">Home</div>
+    <div class="list" (click)="onContactUsClick()" [class.active-tab]="tabClick.contactUs">Contact us</div>
     <!-- <div class="list" [routerLink]="['/favourite']">Favourites</div>   -->
-    <div class="list"  (click)="openDashBoard()" *ngIf="isUserLoggedIn && typeOfUser === 'Owner'">Dashboard</div>
+    <div class="list"  (click)="openDashBoard()" *ngIf="isUserLoggedIn && typeOfUser.toLowerCase() === 'owner'">Dashboard</div>
   </div>
 </div>

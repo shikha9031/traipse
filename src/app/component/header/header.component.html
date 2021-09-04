@@ -1,11 +1,11 @@
 <div class="header-wrapper">
     <div class="logo"><img src="../../assets/images/logo.jpg"></div>
     <div class="user-authenticate"  *ngIf="!isUserLoggedIn">
-      <span (click)="openDialog('login')">Login</span>
-      <span (click)="openDialog('register')">Signup</span>
+      <span (click)="openDialog('login');$event.stopPropagation()">Login</span>
+      <span (click)="openDialog('register');$event.stopPropagation()">Signup</span>
     </div>
     <div class="profile" *ngIf="isUserLoggedIn" (clickOutside)="onClickedOutside($event)">
-      <span class="profile-name" (click)="showDropDown()" style="display:block"> {{userInfo.name}} </span>
+      <span class="profile-name" (click)="showDropDown();$event.stopPropagation()" style="display:block"> {{userInfo.name}} </span>
       <div *ngIf="openProfileDropDown" class="drop-down">
           <div class="row" (click)="openDialog('update password')"> Update Password</div>
           <div class="row" (click)="signOutUser()">Sign Out</div>

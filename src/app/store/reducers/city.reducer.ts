@@ -1,9 +1,8 @@
-import { Action, createReducer, on, State } from '@ngrx/store';
 import * as cityRef from '../actions/city.action';
 import { City } from '../../interface/city';
 
 export const initialState: City[] = [{
-  name: '',
+  city: '',
   locality: [],
   show: false,
   showLocality:false

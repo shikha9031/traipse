@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { CommonInterface } from '../../interface/common_interface';
 import { MatDialog } from '@angular/material';
 import { ModalComponent } from '../modal/modal.component';
+declare var $:any;
 
 @Component({
   selector: 'hostel-list',
@@ -29,6 +30,7 @@ export class HostelListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    $(document).scrollTop(0);
     this.hostel_arr = {
       hostelArr:[],
       hostelObj:null
@@ -36,7 +38,9 @@ export class HostelListComponent implements OnInit {
 
     if(window.location.pathname === '/home'){
       this._store.select('hostelReducer').subscribe((value:HostelInt)=>{
-        this.hostel_arr.hostelArr = value.hostelArr;
+        if(value.hostelArr.length>0){
+          this.hostel_arr.hostelArr = value.hostelArr;
+        }
       });
     }
     else{
@@ -65,7 +69,7 @@ export class HostelListComponent implements OnInit {
 
   makeFav(param:Hostel){
     param.favFlag = !param.favFlag;
-    this._store.dispatch(new hostelRef.HostelAction(this.hostel_arr));
+    this._store.dispatch(new hostelRef.HostelAction(this.hostel_arr.hostelArr));
     this._store.dispatch(new favHostel.FavHostelPresentAction(true));
   }
 
@@ -76,8 +80,7 @@ export class HostelListComponent implements OnInit {
   redirectToBookPage(param:Hostel){
     if(this.isLoggedIn){
       this.hostel_arr.hostelObj = param;
-      this._store.dispatch(new hostelRef.HostelAction(this.hostel_arr)); 
-      sessionStorage.setItem('hostelItem', JSON.stringify(param));   
+      this._store.dispatch(new hostelRef.EditHostelAction(this.hostel_arr.hostelObj)); 
       this.route.navigate(['/bookNow']);
     }
    else{
